@@ -1,0 +1,19 @@
+{
+  "name": "savvy-bee-landing-rebuild",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Pixel-for-pixel rebuild of the Savvy Bee landing page (dev tooling only — the deployable site is ./site and ships none of this)",
+  "scripts": {
+    "serve:ref": "python3 -m http.server 8130 -d landing-page-handoff/design-export",
+    "serve:site": "python3 -m http.server 8131 -d site",
+    "capture": "node tests/capture-reference.mjs",
+    "verify": "node tests/verify.mjs"
+  },
+  "devDependencies": {
+    "lighthouse": "^13.4.1",
+    "pixelmatch": "^5.3.0",
+    "playwright": "^1.49.0",
+    "pngjs": "^7.0.0",
+    "sharp": "^0.35.4"
+  }
+}

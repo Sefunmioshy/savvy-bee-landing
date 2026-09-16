@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; background:#F8F6F1; }
+  body { font-family:Inter, system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  img { max-width:100%; }
+  a { color:#1C1917; text-decoration:none; }
+  a:hover { color:#B8860B; }
+  ::selection { background:#B8860B; color:#fff; }
+  @keyframes sbThink { 0%,100% { opacity:0.25; } 50% { opacity:1; } }
+</style>
+</helmet>
+
+<div style="background:#F8F6F1;color:#1C1917;min-height:100vh;overflow-x:clip">
+
+  <header style="position:sticky;top:0;z-index:30;background:rgba(248,246,241,0.94);backdrop-filter:blur(12px);border-bottom:0.5px solid #E8E5DE">
+    <div style="max-width:1180px;margin:0 auto;padding:12px clamp(18px,4vw,32px);display:flex;align-items:center;flex-wrap:wrap;gap:14px 28px;min-height:64px">
+      <a href="#top" style="display:flex;align-items:center;gap:9px;margin-right:auto">
+        <svg width="19" height="21" viewBox="0 0 20 22" fill="none"><path d="M10 1.2l7.6 4.4v8.8L10 18.8 2.4 14.4V5.6z" stroke="#B8860B" stroke-width="1.2" stroke-linejoin="round"></path><path d="M10 6.6l3 1.7v3.4l-3 1.7-3-1.7V8.3z" stroke="#B8860B" stroke-width="1.2" stroke-linejoin="round"></path></svg>
+        <span style="font-size:15px;font-weight:500;letter-spacing:-0.01em">Savvy Bee</span>
+      </a>
+      <nav style="display:flex;align-items:center;flex-wrap:wrap;gap:10px 22px;font-size:13px">
+        <a href="#nahl" style="color:#6B6860">Nahl</a>
+        <a href="#modules" style="color:#6B6860">Modules</a>
+        <a href="About.dc.html" style="color:#6B6860">About</a>
+        <a href="#get" onClick="{{ goGet }}" style="color:#6B6860">Early access</a>
+      </nav>
+      <div onClick="{{ openTour }}" style="height:38px;padding:0 18px;border-radius:50px;background:#1C1917;color:#fff;display:flex;align-items:center;font-size:13px;font-weight:500;white-space:nowrap;cursor:pointer">Open the demo</div>
+    </div>
+  </header>
+
+  <section id="top" style="max-width:1180px;margin:0 auto;padding:clamp(48px,7vw,86px) clamp(18px,4vw,32px) 0">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:clamp(40px,5vw,56px);align-items:center">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 13px;border-radius:50px;border:0.5px solid #E8E5DE;background:#fff;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.06em;color:#6B6860;white-space:nowrap">
+          <span style="width:5px;height:5px;border-radius:50%;background:#B8860B"></span>PRIVATE BETA · ABUJA
+        </div>
+        <h1 style="font-size:clamp(34px,6.4vw,64px);font-weight:400;letter-spacing:-0.035em;line-height:1.05;margin:24px 0 0;text-wrap:balance">Every account you have, finally in one place.</h1>
+        <p style="font-size:clamp(15px,1.6vw,17px);line-height:1.62;color:#6B6860;margin:20px 0 0;max-width:470px;text-wrap:pretty">Connect your banks in a few minutes and Savvy Bee pulls spending, savings goals, contribution circles and NGX holdings into a single net position — read by an AI copilot that speaks up before something breaks.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:32px">
+          <a href="#get" onClick="{{ goGet }}" style="height:52px;padding:0 28px;border-radius:50px;background:#1C1917;color:#fff;display:flex;align-items:center;font-size:15px;font-weight:500;white-space:nowrap;cursor:pointer">Get early access</a>
+          <div onClick="{{ openTour }}" style="height:52px;padding:0 26px;border-radius:50px;border:0.5px solid #E8E5DE;display:flex;align-items:center;gap:9px;font-size:15px;font-weight:500;color:#1C1917;white-space:nowrap;cursor:pointer">
+            <svg width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M3 1.6l7 4.4-7 4.4z" fill="#1C1917"></path></svg>Open the demo
+          </div>
+        </div>
+        <div style="display:grid;gap:0;margin-top:34px;max-width:440px">
+          <sc-for list="{{ heroScopes }}" as="s" hint-placeholder-count="5">
+            <div onClick="{{ s.pick }}" style="display:flex;gap:13px;align-items:center;padding:11px 0;border-top:0.5px solid #E8E5DE;cursor:pointer">
+              <span style="width:6px;height:6px;border-radius:50%;background:{{ s.dot }};flex:none"></span>
+              <span style="font-size:13.5px;color:{{ s.fg }};flex:1;transition:color .3s">{{ s.name }}</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:{{ s.figFg }};transition:color .3s">{{ s.fig }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <sc-if value="{{ screens }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;justify-content:center">
+          <div style="width:311px;height:651px;flex:none;position:relative">
+            <div style="width:421px;height:880px;background:#1C1917;border-radius:56px;padding:14px;transform:scale(0.74);transform-origin:top left">
+              <div style="width:393px;height:852px;background:#F8F6F1;border-radius:44px;overflow:hidden;display:flex;flex-direction:column;position:relative">
+                <img src="assets/home-chrome-top.png" alt="" style="width:393px;height:108px;display:block;flex:none"></img>
+                <div style="flex:1;overflow:hidden;position:relative">
+                  <div style="position:absolute;top:0;left:0;width:393px;transform:translateY({{ heroScrollY }});transition:transform 1.1s cubic-bezier(0.4,0,0.2,1)">
+
+                    <div style="padding:14px 0 2px">
+                      <div style="position:relative;height:150px;perspective:1100px">
+                        <sc-for list="{{ heroCards }}" as="c" hint-placeholder-count="5">
+                          <div onClick="{{ c.pick }}" style="position:absolute;top:6px;left:50%;width:228px;height:132px;border-radius:18px;background:{{ c.cardBg }};border:{{ c.cardBorder }};padding:16px 17px;cursor:pointer;transform:{{ c.transform }};opacity:{{ c.opacity }};z-index:{{ c.z }};pointer-events:{{ c.pe }};transform-style:preserve-3d;transition:transform .55s cubic-bezier(.34,1.2,.4,1), opacity .4s ease;box-shadow:0 10px 30px rgba(0,0,0,0.08);overflow:hidden">
+                            <div style="display:flex;align-items:center;gap:7px">
+                              <sc-if value="{{ c.showDot }}" hint-placeholder-val="{{ false }}"><span style="width:8px;height:8px;border-radius:50%;background:{{ c.dot }};flex:none"></span></sc-if>
+                              <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.04em;color:{{ c.glyphColor }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.glyph }}</span>
+                            </div>
+                            <div style="font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:500;color:{{ c.balColor }};margin-top:22px;letter-spacing:-0.01em">{{ c.balanceLabel }}</div>
+                            <div style="font-size:11px;color:{{ c.nameColor }};margin-top:7px">{{ c.name }}</div>
+                            <sc-if value="{{ c.isCombined }}" hint-placeholder-val="{{ true }}">
+                              <div style="display:flex;gap:2px;margin-top:11px">
+                                <sc-for list="{{ c.segs }}" as="g" hint-placeholder-count="5"><div style="flex:{{ g.flex }};height:4px;border-radius:2px;background:{{ g.c }}"></div></sc-for>
+                              </div>
+                            </sc-if>
+                          </div>
+                        </sc-for>
+                      </div>
+                      <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:8px">
+                        <sc-for list="{{ heroDots }}" as="d" hint-placeholder-count="5">
+                          <div onClick="{{ d.pick }}" style="height:5px;width:{{ d.w }};border-radius:3px;background:{{ d.bg }};cursor:pointer;transition:width .3s, background-color .3s"></div>
+                        </sc-for>
+                      </div>
+                    </div>
+
+                    <div style="position:relative;width:393px;height:1400px">
+                      <img src="assets/home-body.png" alt="Savvy Bee home screen" style="position:absolute;top:0;left:0;width:393px;height:1400px;display:block;opacity:{{ heroCombinedOp }};transition:opacity .45s ease"></img>
+                      <sc-if value="{{ heroDetail }}" hint-placeholder-val="{{ false }}">
+                        <div style="position:absolute;top:0;left:0;width:393px;background:#F8F6F1;padding:14px 22px 0;opacity:{{ heroDetailOp }};transition:opacity .45s ease">
+                          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;color:#9C9A95">{{ heroDetail.posLabel }}</div>
+                          <div style="display:flex;align-items:flex-end;gap:11px;margin-top:7px">
+                            <div style="font-family:'JetBrains Mono',monospace;font-size:33px;font-weight:500;line-height:0.95;letter-spacing:-0.02em">{{ heroDetail.posFig }}</div>
+                            <div style="display:flex;align-items:center;gap:4px;background:{{ heroDetail.dayTint }};border-radius:50px;padding:4px 10px 4px 8px;margin-bottom:5px">
+                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="{{ heroDetail.dayColor }}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="{{ heroDetail.dayArrow }}"></path></svg>
+                              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:{{ heroDetail.dayColor }}">{{ heroDetail.dayLabel }}</span>
+                            </div>
+                          </div>
+                          <div style="display:flex;gap:2px;margin-top:18px;height:9px">
+                            <sc-for list="{{ heroDetail.segs }}" as="s" hint-placeholder-count="5">
+                              <div style="flex-grow:{{ s.flex }};flex-basis:0;height:9px;border-radius:2px;background:{{ s.color }}"></div>
+                            </sc-for>
+                          </div>
+                          <div style="display:flex;flex-direction:column;gap:2px;margin-top:14px">
+                            <sc-for list="{{ heroDetail.legend }}" as="l" hint-placeholder-count="5">
+                              <div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:0.5px solid #E8E5DE">
+                                <span style="width:8px;height:8px;border-radius:2px;background:{{ l.color }};flex:none"></span>
+                                <span style="flex:1;font-size:12px;color:#6B6860">{{ l.label }}</span>
+                                <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500">{{ l.value }}</span>
+                                <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9C9A95;width:34px;text-align:right">{{ l.pct }}</span>
+                              </div>
+                            </sc-for>
+                          </div>
+                          <sc-if value="{{ heroDetail.imported }}" hint-placeholder-val="{{ false }}">
+                            <div style="display:flex;align-items:flex-start;gap:11px;background:#fff;border:0.5px solid #E8E5DE;border-left:2px solid #9C9A95;border-radius:13px;padding:14px 15px;margin-top:18px">
+                              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9C9A95" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px"><path d="M21 15V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4"></path><path d="M3.3 7L12 12l8.7-5 M12 22V12"></path></svg>
+                              <div style="flex:1;min-width:0">
+                                <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.05em;color:#9C9A95">○ VIEW ONLY</div>
+                                <div style="font-size:12px;color:#6B6860;line-height:1.5;margin-top:5px;text-wrap:pretty">{{ heroDetail.imported }}</div>
+                              </div>
+                            </div>
+                          </sc-if>
+                        </div>
+                      </sc-if>
+                    </div>
+                  </div>
+                </div>
+                <img src="assets/home-chrome-bottom.png" alt="" style="width:393px;height:146px;display:block;flex:none;position:relative;z-index:2"></img>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <section id="nahl" style="margin-top:clamp(64px,9vw,110px);background:#0F0F0D;color:#F8F6F1">
+    <div style="max-width:1180px;margin:0 auto;padding:clamp(56px,8vw,96px) clamp(18px,4vw,32px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(36px,5vw,64px);align-items:center">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.07em;color:#EF9F27">NAHL · YOUR CO-PILOT</div>
+        <h2 style="font-size:clamp(28px,4.2vw,44px);font-weight:400;letter-spacing:-0.03em;line-height:1.1;margin:18px 0 0;text-wrap:balance">Ask in plain words. Get the maths, then the fix.</h2>
+        <p style="font-size:clamp(14.5px,1.5vw,16px);line-height:1.65;color:#9C9A95;margin:18px 0 0;max-width:430px;text-wrap:pretty">Nahl reads every account you connect — salary, bills, subscriptions, goals, holdings — and works out what a decision actually costs before you make it.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.07em;color:#6B6860;margin-top:32px">TRY A QUESTION</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px">
+          <sc-for list="{{ nahlChips }}" as="c" hint-placeholder-count="4">
+            <div onClick="{{ c.pick }}" style="padding:10px 16px;border-radius:22px;border:0.5px solid {{ c.border }};background:{{ c.bg }};color:{{ c.fg }};font-size:13px;line-height:1.35;cursor:pointer;transition:border-color .2s, background .2s, color .2s">{{ c.q }}</div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:center">
+        <div style="width:100%;max-width:390px;border-radius:12px;border:0.5px solid #2C2A25;background:#1A1A17;padding:20px;min-height:330px;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:9px;padding-bottom:15px;border-bottom:0.5px solid #2C2A25">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EF9F27" stroke-width="1.5" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"></rect><path d="M12 4v4M9 13h.01M15 13h.01"></path></svg>
+            <span style="font-size:13px;font-weight:500">Nahl</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.06em;color:#6B6860;margin-left:auto">READING 4 ACCOUNTS</span>
+          </div>
+          <div style="padding-top:16px;display:flex;flex-direction:column;gap:14px;flex:1">
+            <div style="align-self:flex-end;max-width:82%;background:#2C2A25;border-radius:12px;padding:11px 14px;font-size:13px;line-height:1.5">{{ askText }}</div>
+            <sc-if value="{{ thinking }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;gap:5px;align-items:center;padding:4px 0">
+                <span style="width:5px;height:5px;border-radius:50%;background:#EF9F27;animation:sbThink 1s ease-in-out infinite"></span>
+                <span style="width:5px;height:5px;border-radius:50%;background:#EF9F27;animation:sbThink 1s ease-in-out .18s infinite"></span>
+                <span style="width:5px;height:5px;border-radius:50%;background:#EF9F27;animation:sbThink 1s ease-in-out .36s infinite"></span>
+              </div>
+            </sc-if>
+            <div style="max-width:92%;font-size:13.5px;line-height:1.62;opacity:{{ ansOpacity }};transform:translateY({{ ansShift }});transition:opacity .35s, transform .35s">{{ answerText }}</div>
+            <div style="flex:1"></div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;opacity:{{ ansOpacity }};transition:opacity .35s">
+              <div style="height:34px;padding:0 15px;border-radius:50px;background:#F8F6F1;color:#1C1917;display:flex;align-items:center;font-size:12.5px;font-weight:500;white-space:nowrap">{{ actionLabel }}</div>
+              <div style="height:34px;padding:0 15px;border-radius:50px;border:0.5px solid #2C2A25;display:flex;align-items:center;font-size:12.5px;color:#9C9A95;white-space:nowrap">Show the maths</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="modules" style="max-width:1180px;margin:0 auto;padding:clamp(56px,8vw,96px) clamp(18px,4vw,32px) 0">
+    <h2 style="font-size:clamp(26px,3.6vw,40px);font-weight:400;letter-spacing:-0.03em;margin:0;max-width:620px;text-wrap:balance">Four instruments. One balance they all agree on.</h2>
+
+    <sc-if value="{{ pinned }}" hint-placeholder-val="{{ false }}">
+      <div style="display:grid;grid-template-columns:1fr 320px;gap:72px;margin-top:24px;align-items:start">
+        <div>
+          <sc-for list="{{ moduleBlocks }}" as="m" hint-placeholder-count="4">
+            <div data-module="{{ m.i }}" id="{{ m.id }}" style="min-height:74vh;display:flex;flex-direction:column;justify-content:center;padding:40px 0;border-top:0.5px solid #E8E5DE;position:relative">
+              <div style="position:absolute;left:-22px;top:40px;bottom:40px;width:2px;background:#F0EDE6;overflow:hidden">
+                <div style="width:2px;height:{{ m.railH }};background:{{ m.color }};transition:height .25s linear"></div>
+              </div>
+              <div style="opacity:{{ m.op }};transform:translateY({{ m.ty }});transition:opacity .35s ease-out, transform .35s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.07em;color:{{ m.color }}">{{ m.kicker }}</div>
+              <h3 style="font-size:clamp(24px,2.8vw,32px);font-weight:500;letter-spacing:-0.02em;line-height:1.2;margin:14px 0 0;max-width:480px;text-wrap:balance">{{ m.title }}</h3>
+              <p style="font-size:15px;line-height:1.62;color:#6B6860;margin:14px 0 0;max-width:460px;text-wrap:pretty">{{ m.body }}</p>
+              <div style="display:grid;gap:0;margin-top:26px;max-width:470px">
+                <sc-for list="{{ m.tabs }}" as="t" hint-placeholder-count="3">
+                  <div onClick="{{ t.pick }}" style="display:flex;gap:14px;align-items:baseline;padding:14px 0;border-top:0.5px solid #E8E5DE;cursor:pointer">
+                    <span style="width:4px;align-self:stretch;border-radius:2px;background:{{ t.bar }};flex:none;transition:background .3s"></span>
+                    <div style="flex:1">
+                      <div style="font-size:14.5px;font-weight:500;color:{{ t.fg }};transition:color .3s">{{ t.title }}</div>
+                      <div style="font-size:13px;color:#6B6860;line-height:1.5;margin-top:3px;text-wrap:pretty">{{ t.body }}</div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="position:sticky;top:96px;height:calc(100vh - 140px);display:flex;align-items:center;justify-content:center">
+          <div style="position:relative;width:300px;height:min(627px, calc(100vh - 170px))">
+            <div style="position:absolute;top:0;left:50%;transform:translate(-50%, {{ d0.ty }}) scale({{ d0.scale }});opacity:{{ d0.op }};transition:opacity .24s ease, transform .3s cubic-bezier(.16,1,.3,1);pointer-events:{{ d0.pe }};will-change:transform, opacity">
+              <dc-import name="Spend Device" step="{{ d0.step }}" fit="{{ deviceFit }}" hint-size="300px,627px"></dc-import>
+            </div>
+            <div style="position:absolute;top:0;left:50%;transform:translate(-50%, {{ d1.ty }}) scale({{ d1.scale }});opacity:{{ d1.op }};transition:opacity .24s ease, transform .3s cubic-bezier(.16,1,.3,1);pointer-events:{{ d1.pe }};will-change:transform, opacity">
+              <dc-import name="Save Device" step="{{ d1.step }}" fit="{{ deviceFit }}" hint-size="300px,627px"></dc-import>
+            </div>
+            <div style="position:absolute;top:0;left:50%;transform:translate(-50%, {{ d2.ty }}) scale({{ d2.scale }});opacity:{{ d2.op }};transition:opacity .24s ease, transform .3s cubic-bezier(.16,1,.3,1);pointer-events:{{ d2.pe }};will-change:transform, opacity">
+              <dc-import name="Invest Device" step="{{ d2.step }}" fit="{{ deviceFit }}" hint-size="300px,627px"></dc-import>
+            </div>
+            <div style="position:absolute;top:0;left:50%;transform:translate(-50%, {{ d3.ty }}) scale({{ d3.scale }});opacity:{{ d3.op }};transition:opacity .24s ease, transform .3s cubic-bezier(.16,1,.3,1);pointer-events:{{ d3.pe }};will-change:transform, opacity">
+              <dc-import name="Circle Device" step="{{ d3.step }}" fit="{{ deviceFit }}" hint-size="300px,627px"></dc-import>
+            </div>
+          </div>
+          <div style="position:absolute;left:-30px;top:50%;display:flex;flex-direction:column;gap:9px;transform:translateY(-50%)">
+            <sc-for list="{{ tickRail }}" as="m" hint-placeholder-count="4">
+              <a href="#{{ m.id }}" style="width:5px;height:{{ m.tickH }};border-radius:3px;background:{{ m.tick }};opacity:{{ m.tickOp }};transition:background .3s, height .2s linear, opacity .2s linear;display:block"></a>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ stacked }}" hint-placeholder-val="{{ true }}">
+      <div style="margin-top:clamp(28px,5vw,48px)">
+        <div style="border-top:0.5px solid #E8E5DE;padding-top:20px;display:flex;align-items:baseline;justify-content:space-between;gap:16px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.07em;color:{{ mKickerColor }}">{{ mKicker }}</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.06em;color:#9C9A95">{{ mPos }}</div>
+        </div>
+        <h3 style="font-size:clamp(22px,5.6vw,28px);font-weight:500;letter-spacing:-0.02em;line-height:1.2;margin:12px 0 0;text-wrap:balance">{{ mTitle }}</h3>
+        <p style="font-size:14.5px;line-height:1.62;color:#6B6860;margin:12px 0 0;max-width:440px;text-wrap:pretty">{{ mBody }}</p>
+        <div style="display:grid;gap:0;margin-top:18px">
+          <sc-for list="{{ mTabs }}" as="t" hint-placeholder-count="3">
+            <div onClick="{{ t.pick }}" style="display:flex;gap:12px;align-items:baseline;padding:13px 0;border-top:0.5px solid #E8E5DE;cursor:pointer">
+              <span style="width:4px;align-self:stretch;border-radius:2px;background:{{ t.bar }};flex:none;transition:background .3s"></span>
+              <div style="flex:1">
+                <div style="font-size:14px;font-weight:500;color:{{ t.fg }};transition:color .3s">{{ t.title }}</div>
+                <div style="font-size:12.5px;color:#6B6860;line-height:1.5;margin-top:3px;text-wrap:pretty">{{ t.body }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div data-mtrack="1" onScroll="{{ onTrackScroll }}" style="display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:26px calc(-1 * clamp(18px,4vw,32px)) 0;padding:2px clamp(18px,4vw,32px) 12px">
+          <div style="scroll-snap-align:center;flex:none;opacity:{{ d0.mop }};transition:opacity .4s ease">
+            <dc-import name="Spend Device" step="{{ d0.step }}" fit="{{ mFit }}" hint-size="272px,568px"></dc-import>
+          </div>
+          <div style="scroll-snap-align:center;flex:none;opacity:{{ d1.mop }};transition:opacity .4s ease">
+            <dc-import name="Save Device" step="{{ d1.step }}" fit="{{ mFit }}" hint-size="272px,568px"></dc-import>
+          </div>
+          <div style="scroll-snap-align:center;flex:none;opacity:{{ d2.mop }};transition:opacity .4s ease">
+            <dc-import name="Invest Device" step="{{ d2.step }}" fit="{{ mFit }}" hint-size="272px,568px"></dc-import>
+          </div>
+          <div style="scroll-snap-align:center;flex:none;opacity:{{ d3.mop }};transition:opacity .4s ease">
+            <dc-import name="Circle Device" step="{{ d3.step }}" fit="{{ mFit }}" hint-size="272px,568px"></dc-import>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;justify-content:center">
+          <sc-for list="{{ mDots }}" as="s" hint-placeholder-count="4">
+            <div onClick="{{ s.go }}" style="width:{{ s.dotW }};height:5px;border-radius:3px;background:{{ s.dotBg }};cursor:pointer;transition:width .3s ease, background .3s ease"></div>
+          </sc-for>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.07em;color:#9C9A95;text-align:center;margin-top:14px">SWIPE THE PHONE · TAP A FEATURE</div>
+      </div>
+    </sc-if>
+  </section>
+
+  <section id="get" data-reveal="1" style="max-width:1180px;margin:0 auto;padding:clamp(64px,8vw,104px) clamp(18px,4vw,32px) 0;opacity:0;transform:translateY(16px);transition:opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1)">
+    <div style="border-radius:12px;background:#1C1917;color:#F8F6F1;padding:clamp(32px,5vw,68px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:clamp(32px,4vw,48px);align-items:center">
+      <div>
+        <h2 style="font-size:clamp(26px,3.8vw,42px);font-weight:400;letter-spacing:-0.03em;line-height:1.1;margin:0;text-wrap:balance">Join the private beta.</h2>
+        <p style="font-size:15px;line-height:1.6;color:#9C9A95;margin:14px 0 0;max-width:400px;text-wrap:pretty">We onboard a few hundred people a week, Abuja and Lagos first. Leave your email and we'll send your invite.</p>
+      </div>
+      <div>
+        <sc-if value="{{ joined }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;align-items:center;gap:12px;min-height:52px">
+            <span style="width:7px;height:7px;border-radius:50%;background:#EF9F27;flex:none"></span>
+            <span style="font-size:15px">You're on the list. Invite lands within a week.</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{ notJoined }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;gap:9px;flex-wrap:wrap">
+            <input value="{{ contact }}" onChange="{{ onContact }}" ref="{{ contactRef }}" placeholder="{{ placeholder }}" style="flex:1;min-width:180px;height:52px;border-radius:8px;border:0.5px solid {{ fieldBorder }};background:#0F0F0D;color:#F8F6F1;font-family:Inter,sans-serif;font-size:15px;padding:0 16px;outline:none"></input>
+            <div onClick="{{ join }}" style="height:52px;padding:0 26px;border-radius:50px;background:#F8F6F1;color:#1C1917;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500;cursor:pointer;white-space:nowrap;flex:1;min-width:160px">Request invite</div>
+          </div>
+          <sc-if value="{{ signupError }}" hint-placeholder-val="{{ false }}">
+            <div style="font-size:12.5px;color:#EF9F27;margin-top:12px">{{ signupError }}</div>
+          </sc-if>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.06em;color:#6B6860;margin-top:14px;line-height:1.8">NO SPAM · ONE MESSAGE WHEN IT'S YOUR TURN</div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <footer style="max-width:1180px;margin:clamp(56px,8vw,80px) auto 0;padding:clamp(40px,5vw,64px) clamp(18px,4vw,32px) 48px;border-top:0.5px solid #E8E5DE">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:36px">
+      <div style="max-width:290px">
+        <div style="display:flex;align-items:center;gap:9px">
+          <svg width="17" height="19" viewBox="0 0 20 22" fill="none"><path d="M10 1.2l7.6 4.4v8.8L10 18.8 2.4 14.4V5.6z" stroke="#B8860B" stroke-width="1.2" stroke-linejoin="round"></path></svg>
+          <span style="font-size:14px;font-weight:500">Savvy Bee</span>
+        </div>
+        <p style="font-size:12.5px;line-height:1.6;color:#9C9A95;margin:14px 0 0">Savvy Bee Ltd (RC 8326527). A311, Garki Mall, Damaturu Street, Garki II, Abuja, FCT, Nigeria. Investing carries risk; past performance is not indicative of future returns.</p>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:12px">
+          <a href="mailto:hello@mysavvybee.com" style="font-size:12.5px;color:#6B6860">hello@mysavvybee.com</a>
+          <a href="tel:+2348135068614" style="font-size:12.5px;color:#6B6860">+234 813 506 8614</a>
+        </div>
+      </div>
+      <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="3">
+        <div style="display:grid;gap:11px;align-content:start">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.07em;color:#9C9A95">{{ col.head }}</div>
+          <sc-for list="{{ col.links }}" as="l" hint-placeholder-count="4">
+            <a href="{{ l.href }}" style="font-size:13px;color:#6B6860">{{ l.label }}</a>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.06em;color:#9C9A95;margin-top:clamp(36px,5vw,56px)">© 2026 SAVVY BEE LTD · ABUJA, NIGERIA</div>
+  </footer>
+
+  <sc-if value="{{ tourFramed }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:60;background:rgba(15,15,13,0.86);backdrop-filter:blur(6px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;gap:16px">
+      <div style="display:flex;align-items:center;gap:16px;width:100%;max-width:460px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.07em;color:#9C9A95">LIVE DEMO · ALL 46 SCREENS</div>
+        <div onClick="{{ closeTour }}" style="margin-left:auto;height:34px;padding:0 16px;border-radius:50px;border:0.5px solid #2C2A25;color:#F8F6F1;display:flex;align-items:center;font-size:12.5px;cursor:pointer">Close</div>
+      </div>
+      <div style="width:min(421px,100%);height:min(880px,calc(100vh - 110px));border-radius:36px;overflow:hidden;background:#1C1917;border:0.5px solid #2C2A25;position:relative">
+        <iframe src="Savvy%20Bee%20Prototype.html#Home.dc.html" title="Savvy Bee demo" onLoad="{{ tourLoaded }}" style="width:100%;height:100%;border:0;display:block"></iframe>
+        <sc-if value="{{ tourLoading }}" hint-placeholder-val="{{ true }}">
+          <div style="position:absolute;inset:0;z-index:3;background:#0F0F0D;display:flex;flex-direction:column;justify-content:center;padding:34px;opacity:{{ tourLoaderOp }};transition:opacity .45s ease">
+            <div style="display:flex;align-items:center;gap:9px">
+              <span style="width:5px;height:5px;border-radius:50%;background:#EF9F27;animation:sbThink 1.1s ease-in-out infinite"></span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.09em;color:#6B6860">SAVVY BEE · LIVE DEMO</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:7px;margin-top:26px">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:88px;font-weight:400;line-height:0.84;letter-spacing:-0.05em;color:#F8F6F1;font-variant-numeric:tabular-nums">{{ tourPct }}</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#6B6860;margin-top:7px">%</span>
+            </div>
+            <div style="display:flex;gap:2px;margin-top:30px;height:28px;align-items:flex-end">
+              <sc-for list="{{ tourTicks }}" as="t" hint-placeholder-count="46">
+                <span style="flex:1;height:{{ t.h }};background:{{ t.c }};transition:height .3s cubic-bezier(.22,1,.36,1), background-color .3s"></span>
+              </sc-for>
+            </div>
+            <div style="display:flex;justify-content:space-between;gap:12px;margin-top:15px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.07em;color:#6B6860">
+              <span>{{ tourStatus }}</span><span>46 SCREENS</span>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ tourFull }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:60;background:#1C1917;overflow:hidden">
+      <iframe src="Savvy%20Bee%20Prototype.html#Home.dc.html" title="Savvy Bee demo" onLoad="{{ tourLoaded }}" style="position:absolute;inset:0;width:100%;height:100%;border:0;display:block"></iframe>
+      <sc-if value="{{ tourLoading }}" hint-placeholder-val="{{ true }}">
+        <div style="position:absolute;inset:0;z-index:3;background:#0F0F0D;display:flex;flex-direction:column;justify-content:center;padding:clamp(26px,7vw,44px);opacity:{{ tourLoaderOp }};transition:opacity .45s ease">
+          <div style="display:flex;align-items:center;gap:9px">
+            <span style="width:5px;height:5px;border-radius:50%;background:#EF9F27;animation:sbThink 1.1s ease-in-out infinite"></span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.09em;color:#6B6860">SAVVY BEE · LIVE DEMO</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:7px;margin-top:26px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:clamp(64px,23vw,104px);font-weight:400;line-height:0.84;letter-spacing:-0.05em;color:#F8F6F1;font-variant-numeric:tabular-nums">{{ tourPct }}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#6B6860;margin-top:7px">%</span>
+          </div>
+          <div style="display:flex;gap:2px;margin-top:clamp(24px,7vw,34px);height:30px;align-items:flex-end">
+            <sc-for list="{{ tourTicks }}" as="t" hint-placeholder-count="46">
+              <span style="flex:1;height:{{ t.h }};background:{{ t.c }};transition:height .3s cubic-bezier(.22,1,.36,1), background-color .3s"></span>
+            </sc-for>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:12px;margin-top:15px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.07em;color:#6B6860">
+            <span>{{ tourStatus }}</span><span>46 SCREENS</span>
+          </div>
+        </div>
+      </sc-if>
+      <div onClick="{{ closeTour }}" style="position:absolute;top:calc(env(safe-area-inset-top, 0px) + 12px);right:14px;z-index:2;width:44px;height:44px;border-radius:50%;background:rgba(28,25,23,0.86);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;cursor:pointer">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F8F6F1" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+      </div>
+    </div>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#B8860B&quot;,&quot;options&quot;:[&quot;#B8860B&quot;,&quot;#185FA5&quot;,&quot;#3C3489&quot;,&quot;#D4537E&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;pinnedScroll&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Interaction&quot;},&quot;showScreens&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Interaction&quot;},&quot;signupField&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;email&quot;,&quot;phone&quot;],&quot;default&quot;:&quot;email&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Interaction&quot;}}">
+class Component extends DCLogic {
+  state = {
+    contact: '', joined: false, tourOpen: false,
+    active: 0, thinking: false, nahl: 0,
+    heroStep: 0, heroManual: false,
+    steps: [0, 0, 0, 0], manual: [false, false, false, false], mSlide: 0, faq: -1,
+    mw: [1, 0, 0, 0], mOff: 0,
+    wide: typeof window !== 'undefined' && window.innerWidth >= 900
+  };
+
+  // ---- data mirrored from Home.dc.html / Spend.dc.html ----
+  LAYERS = { wallet: 847200, saved: 215000, invested: 102500, hive: 78000 };
+  EXT = [
+    { id: 'gtbank', name: 'GTBank', balance: 184500, dot: '#E8743B', day: -0.4, synced: '2h ago', txns: '1,240',
+      cats: [
+        { label: 'Bills & utilities', color: '#185FA5', value: 59000 },
+        { label: 'Transfers', color: '#0D7A5F', value: 44000 },
+        { label: 'Food & dining', color: '#D4537E', value: 33000 },
+        { label: 'Transport', color: '#B8860B', value: 26000 },
+        { label: 'Other', color: '#9C9A95', value: 22500 }
+      ] },
+    { id: 'kuda', name: 'Kuda', balance: 96300, dot: '#9087E0', day: 0.6, synced: '1h ago', txns: '480',
+      cats: [
+        { label: 'Food & dining', color: '#D4537E', value: 38000 },
+        { label: 'Shopping', color: '#3C3489', value: 24000 },
+        { label: 'Transport', color: '#B8860B', value: 18000 },
+        { label: 'Airtime & data', color: '#185FA5', value: 9000 },
+        { label: 'Other', color: '#9C9A95', value: 7300 }
+      ] },
+    { id: 'opay', name: 'OPay', balance: 52400, dot: '#1DC468', day: 0.2, synced: '30m ago', txns: '320',
+      cats: [
+        { label: 'Transfers', color: '#0D7A5F', value: 21000 },
+        { label: 'Airtime & data', color: '#185FA5', value: 14000 },
+        { label: 'Betting', color: '#D4537E', value: 9000 },
+        { label: 'Food', color: '#B8860B', value: 5400 },
+        { label: 'Other', color: '#9C9A95', value: 3000 }
+      ] }
+  ];
+  SEG_EXTERNAL = '#B0ABA0';
+
+  // scroll offsets for the combined state, mirroring two scroll passes
+  HERO_STEPS = [
+    { i: 0, y: 0, ms: 2600 },
+    { i: 0, y: -520, ms: 2400 },
+    { i: 0, y: -960, ms: 2400 },
+    { i: 0, y: 0, ms: 1700 },
+    { i: 1, y: 0, ms: 2600 },
+    { i: 2, y: 0, ms: 2500 },
+    { i: 3, y: 0, ms: 2400 },
+    { i: 4, y: 0, ms: 2400 }
+  ];
+
+  extTotal() { return this.EXT.reduce((s, a) => s + a.balance, 0); }
+  savvyTotal() { const L = this.LAYERS; return L.wallet + L.saved + L.invested + L.hive; }
+  combinedTotal() { return this.savvyTotal() + this.extTotal(); }
+  fmtFull(n) { return '₦' + Math.round(n).toLocaleString('en-US'); }
+  fmtCompact(n) { return n >= 1000 ? '₦' + Math.round(n / 1000) + 'k' : '₦' + n; }
+  reduced() {
+    try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; }
+  }
+
+  scopes() {
+    return [
+      { kind: 'combined', name: 'Combined', glyph: '◆ COMBINED', balance: this.combinedTotal(), day: 1.8 },
+      { kind: 'wallet', name: 'Savvy Bee Wallet', glyph: '● SAVVY BEE · TRANSACTABLE', balance: this.LAYERS.wallet, day: 2.1 },
+      ...this.EXT.map(a => ({ kind: 'connected', name: a.name, glyph: '○ VIEW ONLY', balance: a.balance, day: a.day, acct: a }))
+    ];
+  }
+
+  MODULE_DEFS = [
+    { i: 0, id: 'spend', kicker: 'SPEND', color: '#1C1917',
+      title: 'Accounts that explain themselves',
+      body: 'One feed across every linked bank and card, categorised on arrival. Safe-to-spend is worked out after your bills, not before them. Underneath it sit three tools most banking apps do not have at all.',
+      tabs: [
+        { title: 'The Spend home', body: 'Your wallet and every linked account on one carousel, safe-to-spend worked out after bills, and the month\u2019s flow in a single bar.' },
+        { title: 'Budgets', body: 'Five rails running live against the month, with the one you are over shown in red.' },
+        { title: 'Spending heatmap', body: 'Every day of the month shaded by what you spent, so the outliers name themselves.' },
+        { title: 'Subscriptions', body: 'What renews next, what you stopped opening, and what cancelling it saves you a year.' }
+      ] },
+    { i: 1, id: 'save', kicker: 'SAVE', color: '#185FA5',
+      title: 'Goals that fill themselves',
+      body: 'Open a capsule for rent, school fees or an emergency buffer, set the rule and let it run. Lock it if you are tempted. Nothing ever saves you below the floor you set.',
+      tabs: [
+        { title: 'Payday auto-save', body: 'The day after salary lands, one split across every goal — and you see it the night before.' },
+        { title: 'Savings rules', body: 'Round-ups, inflow sweeps, ₦500 every takeout. Nahl proposes new ones from what it sees.' },
+        { title: 'Capsules and vaults', body: 'One pot per goal, with a 90-day vault for the money you should not be able to reach.' }
+      ] },
+    { i: 2, id: 'invest', kicker: 'INVEST', color: '#3C3489',
+      title: 'The NGX, without the brokerage runaround',
+      body: 'Screen Nigerian equities and funds, buy fractions, rebalance on a schedule. Every order shows its full cost before you place it.',
+      tabs: [
+        { title: 'A company, in full', body: 'Dangote Cement: live price, analyst consensus, dividend history and the numbers behind them.' },
+        { title: 'Risk profile, then first investment', body: 'Read from 847 real transactions, not a quiz you could game — then applied to every order.' },
+        { title: 'Rebalance', body: 'Where the market pushed you off target, what it costs to correct, and one tap to do it.' }
+      ] },
+    { i: 3, id: 'circles', kicker: 'CIRCLES & THE HIVE', color: '#B8860B',
+      title: 'Ajo and esusu, with the trust written down',
+      body: 'Run a contribution circle or a shared goal with people you already trust, and let the rotation, the escrow and every on-time record be a matter of fact instead of a group-chat argument.',
+      tabs: [
+        { title: 'The circle', body: 'Fixed rotation, escrow-held contributions, and a payment record every member can see.' },
+        { title: 'Group goals', body: 'One target, many contributors — including who is behind and what would keep them in.' },
+        { title: 'The Nahl group register', body: 'Nahl in the group is neutral and rule-bound. Nahl in your private channel is only yours.' }
+      ] }
+  ];
+
+  reveal() {
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    if (!els.length) return;
+    const show = el => { el.style.opacity = '1'; el.style.transform = 'none'; };
+    if (this.reduced() || typeof IntersectionObserver === 'undefined') { els.forEach(show); return; }
+    els.forEach((el, i) => { el.style.transitionDelay = (i % 3) * 80 + 'ms'; });
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.06 });
+    els.forEach(el => io.observe(el));
+    this.revealIO = io;
+  }
+
+  mobileFit() {
+    return Math.min(272, Math.max(180, (this.state.vw || 393) * 0.72)) / 421;
+  }
+
+  nearestSlide(el) {
+    const kids = Array.from(el.children);
+    if (!kids.length) return 0;
+    const mid = el.scrollLeft + el.clientWidth / 2;
+    let best = 0, bestD = Infinity;
+    kids.forEach((k, i) => {
+      const c = k.offsetLeft + k.offsetWidth / 2;
+      const d = Math.abs(c - mid);
+      if (d < bestD) { bestD = d; best = i; }
+    });
+    return best;
+  }
+
+  onTrackScroll(e) {
+    const el = e.currentTarget;
+    if (this.tS) return;
+    this.tS = requestAnimationFrame(() => {
+      this.tS = null;
+      const n = this.nearestSlide(el);
+      if (n !== this.state.mSlide) this.setState({ mSlide: n });
+    });
+  }
+
+  goSlide(i) {
+    const el = document.querySelector('[data-mtrack]');
+    this.setState({ mSlide: i });
+    if (!el) return;
+    const k = el.children[i];
+    if (!k) return;
+    const left = k.offsetLeft - (el.clientWidth - k.offsetWidth) / 2;
+    el.scrollTo({ left: Math.max(0, left), behavior: this.reduced() ? 'auto' : 'smooth' });
+  }
+
+  componentDidMount() {
+    this.onResize = () => {
+      this.setState({ wide: window.innerWidth >= 900, vh: window.innerHeight, vw: window.innerWidth });
+    };
+    this.setState({ vh: window.innerHeight, vw: window.innerWidth });
+    window.addEventListener('resize', this.onResize);
+    this._pWide = this.state.wide;
+    this._pMod = this.curMod();
+    this.observe();
+    setTimeout(() => this.reveal(), 60);
+    if (!this.reduced()) { this.tickHero(); this.tickStep(); }
+  }
+
+  componentDidUpdate() {
+    if (this._pWide !== this.state.wide) { this._pWide = this.state.wide; this.observe(); }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    if (this.onScroll) window.removeEventListener('scroll', this.onScroll);
+    clearTimeout(this.hT); clearTimeout(this.sT); clearTimeout(this.nT);
+    clearInterval(this.pT); clearInterval(this.sI); clearTimeout(this.fT); clearTimeout(this.rT);
+    if (this.revealIO) this.revealIO.disconnect();
+  }
+
+  tickHero() {
+    clearTimeout(this.hT);
+    if (this.state.heroManual) return;
+    const step = this.HERO_STEPS[this.state.heroStep];
+    this.hT = setTimeout(() => {
+      this.setState(s => ({ heroStep: (s.heroStep + 1) % this.HERO_STEPS.length }), () => this.tickHero());
+    }, step.ms);
+  }
+
+  curMod() {
+    if (this.state.wide) return Math.max(0, Math.min(3, this.state.active || 0));
+    return Math.max(0, Math.min(3, this.state.mSlide));
+  }
+
+  tickStep() {
+    clearInterval(this.sI);
+    if (this.reduced()) return;
+    this.sI = setInterval(() => {
+      const m = this.curMod();
+      if (this.state.manual[m]) return;
+      this.setState(s => {
+        const steps = s.steps.slice();
+        steps[m] = (steps[m] + 1) % 3;
+        return { steps };
+      });
+    }, 3600);
+  }
+
+  startTour() {
+    clearInterval(this.pT); clearTimeout(this.fT);
+    this.setState({ tourOpen: true, tourLoading: true, tourFade: false, tourPct: 0 });
+    this.pT = setInterval(() => {
+      this.setState(s => {
+        const p = s.tourPct || 0;
+        if (p >= 92) return null;
+        return { tourPct: Math.min(92, p + Math.max(0.5, (94 - p) * 0.055)) };
+      });
+    }, 60);
+  }
+
+  finishTour() {
+    if (!this.state.tourLoading) return;
+    clearInterval(this.pT);
+    this.setState({ tourPct: 100 });
+    this.fT = setTimeout(() => {
+      this.setState({ tourFade: true });
+      this.fT = setTimeout(() => this.setState({ tourLoading: false }), 480);
+    }, 420);
+  }
+
+  pickScope(i) {
+    clearTimeout(this.hT);
+    const at = this.HERO_STEPS.findIndex(s => s.i === i);
+    this.setState({ heroManual: true, heroStep: at < 0 ? 0 : at });
+  }
+
+  pickStep(m, i) {
+    this.setState(s => {
+      const steps = s.steps.slice(); steps[m] = i;
+      const manual = s.manual.slice(); manual[m] = true;
+      return { steps, manual };
+    });
+  }
+
+  observe() {
+    if (this.onScroll) window.removeEventListener('scroll', this.onScroll);
+    const measure = () => {
+      const els = document.querySelectorAll('[data-module]');
+      if (!els.length) return;
+      const mid = window.innerHeight / 2;
+      const raw = [0, 0, 0, 0];
+      let best = 0, bestD = Infinity, bestOff = 0;
+      els.forEach(el => {
+        const i = Number(el.getAttribute('data-module'));
+        const r = el.getBoundingClientRect();
+        const h = Math.max(1, r.height);
+        const d = (r.top + r.bottom) / 2 - mid;
+        const n = Math.abs(d) / h;
+        raw[i] = Math.max(0, Math.min(1, (0.58 - n) / 0.22));
+        if (Math.abs(d) < bestD) { bestD = Math.abs(d); best = i; bestOff = d / h; }
+      });
+      const next = { active: best };
+      if (!this.reduced()) {
+        next.mw = raw;
+        next.mOff = Math.max(-1, Math.min(1, bestOff));
+      }
+      this.setState(next);
+    };
+    this.onScroll = () => {
+      if (this.rafS) return;
+      this.rafS = requestAnimationFrame(() => { this.rafS = null; measure(); });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    setTimeout(measure, 100);
+  }
+
+  askNahl(i) {
+    if (i === this.state.nahl && !this.state.thinking) return;
+    clearTimeout(this.nT);
+    this.setState({ thinking: true, nahl: i });
+    this.nT = setTimeout(() => this.setState({ thinking: false }), 850);
+  }
+
+  renderVals() {
+    const amber = this.props.accent ?? '#B8860B';
+    const pinned = (this.props.pinnedScroll ?? true) && this.state.wide && (this.props.showScreens ?? true);
+    const conv = this.props.signupField ?? 'email';
+    const reduced = this.reduced();
+
+    // ===== hero carousel, using the app's own geometry =====
+    const SC = this.scopes();
+    const step = this.HERO_STEPS[this.state.heroStep] || this.HERO_STEPS[0];
+    const idx = step.i;
+    const active = SC[idx];
+
+    const heroCards = SC.map((s, i) => {
+      const p = i - idx;
+      const ap = Math.abs(p);
+      const rotate = reduced ? 0 : Math.max(-52, Math.min(52, -p * 38));
+      const tx = p * (reduced ? 150 : 108);
+      const scale = Math.max(0.66, 1 - ap * 0.16);
+      const op = ap > 2.3 ? 0 : Math.max(0, 1 - ap * 0.4);
+      const isC = s.kind === 'combined', isW = s.kind === 'wallet', isX = s.kind === 'connected';
+      const segs = isC ? [
+        { c: this.SEG_EXTERNAL, v: this.extTotal() }, { c: '#1C1917', v: this.LAYERS.wallet },
+        { c: '#0D7A5F', v: this.LAYERS.saved }, { c: '#185FA5', v: this.LAYERS.invested }, { c: '#3C3489', v: this.LAYERS.hive }
+      ].map(x => ({ c: x.c, flex: String(Math.max(2, Math.round(x.v / 1000))) })) : [];
+      return {
+        isCombined: isC, showDot: isX, segs,
+        glyph: s.glyph, name: s.name, balanceLabel: this.fmtFull(s.balance),
+        transform: 'translateX(calc(-50% + ' + tx.toFixed(1) + 'px)) rotateY(' + rotate.toFixed(1) + 'deg) scale(' + scale.toFixed(3) + ')',
+        opacity: op.toFixed(2), z: String(20 - Math.round(ap * 4)),
+        pe: op > 0.05 ? 'auto' : 'none',
+        cardBg: isW ? '#1C1917' : '#FFFFFF',
+        cardBorder: isW ? '1px solid rgba(255,255,255,0.06)' : '0.5px solid #E8E5DE',
+        glyphColor: isW ? amber : isX ? '#9C9A95' : '#6B6860',
+        nameColor: isW ? 'rgba(255,255,255,0.55)' : '#9C9A95',
+        balColor: isW ? '#fff' : isX ? '#6B6860' : '#1C1917',
+        dot: s.acct ? s.acct.dot : 'transparent',
+        pick: () => this.pickScope(i)
+      };
+    });
+    const heroDots = SC.map((s, i) => ({
+      w: i === idx ? '16px' : '5px',
+      bg: i === idx ? '#1C1917' : '#D8D4CC',
+      pick: () => this.pickScope(i)
+    }));
+    const heroScopes = SC.map((s, i) => ({
+      name: s.name,
+      fig: this.fmtFull(s.balance),
+      dot: i === idx ? amber : '#D8D4CC',
+      fg: i === idx ? '#1C1917' : '#9C9A95',
+      figFg: i === idx ? '#1C1917' : '#9C9A95',
+      pick: () => this.pickScope(i)
+    }));
+
+    // per-account instrument, mirroring the app's Total Position block
+    let heroDetail = null;
+    if (active.kind !== 'combined') {
+      const isConn = active.kind === 'connected';
+      const raw = isConn ? active.acct.cats : [
+        { label: 'Wallet', color: '#1C1917', value: this.LAYERS.wallet },
+        { label: 'Saved', color: '#0D7A5F', value: this.LAYERS.saved },
+        { label: 'Invested', color: '#185FA5', value: this.LAYERS.invested },
+        { label: 'Hive', color: '#3C3489', value: this.LAYERS.hive }
+      ];
+      const total = raw.reduce((a, x) => a + x.value, 0);
+      const up = active.day >= 0;
+      heroDetail = {
+        posLabel: isConn ? active.name.toUpperCase() + ' BALANCE' : 'SAVVY BEE POSITION',
+        posFig: this.fmtFull(isConn ? active.balance : this.savvyTotal()),
+        dayLabel: (up ? '+' : '') + active.day + '%',
+        dayColor: up ? '#0D7A5F' : '#A32D2D',
+        dayTint: up ? 'rgba(13,122,95,0.10)' : 'rgba(163,45,45,0.10)',
+        dayArrow: up ? 'M12 19V5M5 12l7-7 7 7' : 'M12 5v14M5 12l7 7 7-7',
+        segs: raw.map(x => ({ color: x.color, flex: String(Math.max(3, Math.round(x.value / 1000))) })),
+        legend: raw.map(x => ({ label: x.label, color: x.color, value: this.fmtCompact(x.value), pct: Math.round(x.value / total * 100) + '%' })),
+        imported: isConn ? 'Imported from ' + active.name + ' · read-only · last synced ' + active.acct.synced + ' · ' + active.acct.txns + ' transactions' : ''
+      };
+    }
+
+    // ===== Nahl =====
+    const qs = [
+      { q: 'Can I afford Detty December?', a: 'Yes, with one change. Your Safety Floor holds at ₦180,000 if you pause the ₦45,000 monthly transfer to Rent 2027 for two cycles. Rent stays fully funded — you land 11 days late on the goal, not short on the bill.', action: 'Pause the transfer' },
+      { q: 'What is eating my salary?', a: 'Three subscriptions renewed within four days of payday and took ₦38,400 before your bills queue ran. Two of them you have not opened in 60 days. Cancelling both moves your safe-to-spend up ₦26,900 a month.', action: 'Review subscriptions' },
+      { q: 'Is my rent goal on track?', a: 'Rent 2027 is at 82% with 11 weeks to go, and the payday sweep covers the rest with ₦40,000 spare. The risk is January — your circle payout lands after the rent date, so I would move the sweep two days earlier.', action: 'Move the sweep' },
+      { q: 'Should I buy more GTCO?', a: 'You can, but it would take banking to 41% of your portfolio against the 30% ceiling in your risk profile. A ₦25,000 buy keeps you inside it. Anything larger and I will ask you to change the profile first.', action: 'Buy ₦25,000' }
+    ];
+    const cur = qs[this.state.nahl] || qs[0];
+
+    // ===== module sub-experiences =====
+    const ms = Math.max(0, Math.min(3, this.state.mSlide));
+    const mFit = this.mobileFit();
+    const mCur = this.MODULE_DEFS[ms];
+    const mw = this.state.mw || [1, 0, 0, 0];
+    const drift = (this.state.mOff || 0) * -16;
+    const devVals = this.MODULE_DEFS.map(d => {
+      const on = d.i === this.state.active;
+      const near = reduced ? (on ? 1 : 0) : Math.max(0, Math.min(1, mw[d.i] || 0));
+      return {
+        step: this.state.steps[d.i],
+        op: on ? '1' : '0',
+        scale: (0.972 + 0.028 * near).toFixed(4),
+        ty: (on ? drift : 0).toFixed(1) + 'px',
+        pe: on ? 'auto' : 'none',
+        mop: d.i === ms ? '1' : '0.42'
+      };
+    });
+    return {
+      amber,
+      screens: this.props.showScreens ?? true,
+      pinned, stacked: !pinned,
+      tourScale: String(Math.max((this.state.vw || 393) / 393, (this.state.vh || 852) / 852).toFixed(4)),
+      tourFramed: this.state.tourOpen && this.state.wide,
+      tourFull: this.state.tourOpen && !this.state.wide,
+      openTour: () => { this.startTour(); try { document.body.style.overflow = 'hidden'; } catch (e) {} },
+      closeTour: () => { clearInterval(this.pT); clearTimeout(this.fT); this.setState({ tourOpen: false, tourLoading: false }); try { document.body.style.overflow = ''; } catch (e) {} },
+      tourLoaded: () => this.finishTour(),
+      tourLoading: this.state.tourLoading,
+      tourLoaderOp: this.state.tourFade ? '0' : '1',
+      tourPct: String(Math.floor(this.state.tourPct || 0)),
+      tourStatus: (this.state.tourPct || 0) < 26 ? 'LOADING RUNTIME'
+        : (this.state.tourPct || 0) < 58 ? 'MOUNTING SCREENS'
+        : (this.state.tourPct || 0) < 92 ? 'RESTORING SESSION' : 'READY',
+      tourTicks: Array.from({ length: 46 }, (_, i) => {
+        const on = (i + 1) / 46 * 100 <= (this.state.tourPct || 0);
+        return { h: on ? (i % 6 === 0 ? '30px' : '20px') : '7px', c: on ? '#EF9F27' : '#2C2A25' };
+      }),
+
+      heroCards, heroDots, heroScopes, heroDetail,
+      heroScrollY: step.y + 'px',
+      heroCombinedOp: active.kind === 'combined' ? '1' : '0',
+      heroDetailOp: active.kind === 'combined' ? '0' : '1',
+
+      placeholder: conv === 'phone' ? '0801 234 5678' : 'you@email.com',
+      contact: this.state.contact,
+      joined: this.state.joined,
+      notJoined: !this.state.joined,
+      onContact: e => this.setState({ contact: e.target.value, signupError: '' }),
+      fieldBorder: this.state.signupError ? '#EF9F27' : '#2C2A25',
+      signupError: this.state.signupError || '',
+      contactRef: el => { this.contactEl = el; },
+      goGet: e => {
+        if (e && e.preventDefault) e.preventDefault();
+        const sec = document.getElementById('get');
+        if (!sec) return;
+        const top = sec.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop) - 40;
+        try { window.scrollTo({ top, behavior: 'smooth' }); } catch (err) { window.scrollTo(0, top); }
+        setTimeout(() => { if (this.contactEl) this.contactEl.focus({ preventScroll: true }); }, 520);
+      },
+      join: () => {
+        const v = this.state.contact.trim();
+        const ok = this.props.signupField === 'phone'
+          ? v.replace(/[^0-9]/g, '').length >= 10
+          : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+        if (!ok) {
+          this.setState({ signupError: this.props.signupField === 'phone' ? 'Enter a phone number we can reach you on.' : 'Enter an email address we can send the invite to.' });
+          if (this.contactEl) this.contactEl.focus({ preventScroll: true });
+          return;
+        }
+        this.setState({ joined: true, signupError: '' });
+      },
+
+      thinking: this.state.thinking,
+      askText: cur.q,
+      answerText: this.state.thinking ? '' : cur.a,
+      actionLabel: cur.action,
+      ansOpacity: this.state.thinking ? 0 : 1,
+      ansShift: this.state.thinking ? '8px' : '0px',
+      nahlChips: qs.map((q, i) => ({
+        q: q.q,
+        pick: () => this.askNahl(i),
+        border: i === this.state.nahl ? '#EF9F27' : '#2C2A25',
+        bg: i === this.state.nahl ? 'rgba(239,159,39,0.10)' : 'transparent',
+        fg: i === this.state.nahl ? '#EF9F27' : '#9C9A95'
+      })),
+
+      deviceFit: Math.min(627, (this.state.vh || 900) - 170) / 880,
+      mFit: mFit,
+      d0: devVals[0], d1: devVals[1], d2: devVals[2], d3: devVals[3],
+      moduleBlocks: this.MODULE_DEFS.map(d => {
+        const w = reduced ? 1 : (d.i === this.state.active ? 1 : Math.max(0, Math.min(0.55, mw[d.i] || 0)));
+        return {
+        i: d.i, id: d.id, kicker: d.kicker, color: d.color, title: d.title, body: d.body,
+        op: (0.26 + 0.74 * w).toFixed(3),
+        ty: ((1 - w) * 26).toFixed(1) + 'px',
+        railH: (24 + 124 * w).toFixed(0) + 'px',
+        tabs: d.tabs.map((t, i) => ({
+          title: t.title, body: t.body,
+          bar: i === this.state.steps[d.i] ? amber : '#E8E5DE',
+          fg: i === this.state.steps[d.i] ? '#1C1917' : '#9C9A95',
+          pick: () => this.pickStep(d.i, i)
+        }))
+        };
+      }),
+      mKicker: mCur.kicker,
+      mKickerColor: mCur.color,
+      mTitle: mCur.title,
+      mBody: mCur.body,
+      mPos: (ms + 1) + ' / 4',
+      mTabs: mCur.tabs.map((t, i) => ({
+        title: t.title, body: t.body,
+        bar: i === this.state.steps[ms] ? amber : '#E8E5DE',
+        fg: i === this.state.steps[ms] ? '#1C1917' : '#9C9A95',
+        pick: () => this.pickStep(ms, i)
+      })),
+      onTrackScroll: e => this.onTrackScroll(e),
+      mDots: this.MODULE_DEFS.map((d, i) => ({
+        dotW: i === ms ? '22px' : '5px',
+        dotBg: i === ms ? amber : '#D8D4CC',
+        go: () => this.goSlide(i)
+      })),
+
+      tickRail: this.MODULE_DEFS.map((d, i) => {
+        const w = i === this.state.active ? 1 : (reduced ? 0 : Math.max(0, Math.min(0.5, mw[i] || 0)));
+        return {
+          id: d.id,
+          tick: i === this.state.active ? amber : '#D8D4CC',
+          tickH: (10 + 26 * w).toFixed(0) + 'px',
+          tickOp: (0.35 + 0.65 * w).toFixed(2)
+        };
+      }),
+
+      footerCols: [
+        { head: 'PRODUCT', links: [
+          { label: 'Spend', href: '#spend' }, { label: 'Save', href: '#save' },
+          { label: 'Invest', href: '#invest' }, { label: 'Circles', href: '#circles' },
+          { label: 'Nahl', href: '#nahl' }
+        ] },
+        { head: 'COMPANY', links: [
+          { label: 'About', href: 'About.dc.html' }, { label: 'Team', href: 'About.dc.html#team' },
+          { label: 'Early access', href: '#get' }, { label: 'Contact', href: 'mailto:hello@mysavvybee.com' }
+        ] },
+        { head: 'LEGAL', links: [
+          { label: 'Terms', href: 'Legal.dc.html#terms' }, { label: 'Privacy', href: 'Legal.dc.html#privacy' },
+          { label: 'Fees', href: 'Legal.dc.html#fees' }, { label: 'Complaints', href: 'Legal.dc.html#complaints' }
+        ] }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

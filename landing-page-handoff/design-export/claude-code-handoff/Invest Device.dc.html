@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="position:relative;flex:none;width:{{ w }};height:{{ h }}">
+  <div style="position:absolute;top:0;left:0;width:421px;height:880px;transform:scale({{ fit }});transform-origin:top left;background:#1C1917;border-radius:56px;padding:14px">
+    <div style="width:393px;height:852px;background:#F8F6F1;border-radius:44px;overflow:hidden;display:flex;flex-direction:column;position:relative">
+      <div style="flex:none;padding:52px 22px 12px;display:flex;align-items:center;justify-content:space-between">
+        <div style="font-size:21px;font-weight:500;letter-spacing:-0.01em">{{ title }}</div>
+        <div style="height:32px;padding:0 14px;border-radius:50px;background:#F0EDE6;display:flex;align-items:center;font-size:13px;color:#6B6860">{{ pill }}</div>
+      </div>
+      <div style="flex:1;position:relative;overflow:hidden">
+
+        <div style="position:absolute;inset:0;padding:8px 22px 0;opacity:{{ op0 }};transition:opacity .4s ease">
+          <div style="font-size:12.5px;color:#6B6860">Dangote Cement Plc</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:500;margin-top:5px;line-height:1.1">₦485.00</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:7px">
+            <span style="font-size:12.5px;color:#0D7A5F">+₦19.50 (4.2%) today</span>
+            <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:#9C9A95"><span style="width:6px;height:6px;border-radius:50%;background:#0D7A5F"></span>NGX · 14:32</span>
+          </div>
+          <svg viewBox="0 0 340 120" width="100%" height="120" preserveAspectRatio="none" style="display:block;margin-top:12px;overflow:visible">
+            <line x1="0" y1="66" x2="340" y2="66" stroke="#C9C5BC" stroke-width="1" stroke-dasharray="3 3"></line>
+            <path d="{{ path }}" fill="none" stroke="#B8860B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle cx="332" cy="{{ endY }}" r="3" fill="#B8860B"></circle>
+          </svg>
+          <div style="display:flex;gap:6px;margin-top:10px">
+            <sc-for list="{{ frames }}" as="f" hint-placeholder-count="5">
+              <div onClick="{{ f.tap }}" style="flex:1;text-align:center;font-size:12px;border-radius:8px;padding:8px 0;cursor:pointer;background:{{ f.bg }};color:{{ f.fg }};transition:background .2s">{{ f.label }}</div>
+            </sc-for>
+          </div>
+          <div style="display:flex;margin-top:16px">
+            <sc-for list="{{ quick }}" as="q" hint-placeholder-count="4">
+              <div style="flex:1;border-right:0.5px solid #E8E5DE;padding-right:12px">
+                <div style="font-size:9.5px;text-transform:uppercase;letter-spacing:0.05em;color:#9C9A95">{{ q.k }}</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;margin-top:5px">{{ q.v }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="background:#fff;border:0.5px solid #E8E5DE;border-radius:14px;padding:15px;margin-top:16px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between">
+              <span style="font-size:20px;font-weight:500;color:#0D7A5F">BUY</span>
+              <span style="font-size:11.5px;color:#6B6860">14 analysts · consensus</span>
+            </div>
+            <div style="display:flex;gap:3px;margin-top:13px">
+              <div style="flex:7;height:7px;border-radius:4px 0 0 4px;background:#0D7A5F"></div>
+              <div style="flex:4;height:7px;background:#5BA88E"></div>
+              <div style="flex:2;height:7px;background:#C9C5BC"></div>
+              <div style="flex:1;height:7px;border-radius:0 4px 4px 0;background:#D89B9B"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:10.5px;color:#9C9A95">
+              <span>Strong buy 7</span><span>Buy 4</span><span>Hold 2</span><span>Sell 1</span>
+            </div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-top:14px;padding-top:13px;border-top:0.5px solid #E8E5DE">
+              <span style="font-size:12px;color:#6B6860">Avg price target</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:13.5px">₦540 (+11.3%)</span>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 22px;margin-top:14px">
+            <sc-for list="{{ keyStats }}" as="k" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:0.5px solid #E8E5DE">
+                <span style="font-size:12px;color:#6B6860">{{ k.k }}</span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px">{{ k.v }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;gap:9px;margin-top:16px">
+            <div style="width:96px;height:46px;border-radius:50px;border:0.5px solid #1C1917;display:flex;align-items:center;justify-content:center;font-size:13.5px">Sell</div>
+            <div style="flex:1;height:46px;border-radius:50px;background:#1C1917;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13.5px">Buy</div>
+          </div>
+        </div>
+
+        <div style="position:absolute;inset:0;padding:8px 22px 0;opacity:{{ op1 }};transition:opacity .4s ease">
+          <div style="background:#fff;border:0.5px solid #E8E5DE;border-left:2px solid #D4537E;border-radius:12px;padding:15px">
+            <div style="display:flex;align-items:center;gap:7px">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4537E" stroke-width="1.6" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"></rect><path d="M12 4v4M9 13h.01M15 13h.01"></path></svg>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.05em;color:#9C9A95">NAHL</span>
+            </div>
+            <div style="font-size:13px;line-height:1.55;margin-top:9px;text-wrap:pretty">I read your risk profile from how you actually handle money — 847 transactions over four months. Here is what I see.</div>
+          </div>
+          <div style="background:#fff;border:0.5px solid #E8E5DE;border-radius:12px;padding:2px 15px;margin-top:12px">
+            <sc-for list="{{ evidence }}" as="e" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:{{ e.border }}">
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:10.5px;text-transform:uppercase;letter-spacing:0.05em;color:#9C9A95">{{ e.k }}</div>
+                  <div style="font-size:12.5px;margin-top:4px;line-height:1.4">{{ e.v }}</div>
+                </div>
+                <span style="flex:none;font-size:11px;color:{{ e.tagFg }};background:{{ e.tagBg }};border-radius:6px;padding:5px 9px">{{ e.tag }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="background:#1C1917;border-radius:12px;padding:20px;margin-top:12px">
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:#EF9F27">Your profile</div>
+            <div style="font-size:23px;font-weight:500;color:#fff;margin-top:9px;letter-spacing:0.01em">MODERATE GROWTH</div>
+            <div style="font-size:12.5px;color:#9C9A95;line-height:1.5;margin-top:9px;text-wrap:pretty">Comfortable with medium-term market fluctuations. Prioritises growth over pure safety.</div>
+            <div style="display:flex;align-items:center;gap:7px;margin-top:15px;padding-top:13px;border-top:0.5px solid rgba(255,255,255,0.1)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6B6860" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"></path><circle cx="12" cy="12" r="9"></circle></svg>
+              <span style="font-size:11px;color:#6B6860">Based on real behaviour, not a quiz you could game.</span>
+            </div>
+          </div>
+          <div style="height:50px;border-radius:50px;background:#1C1917;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13.5px;margin-top:14px">See my recommended portfolio →</div>
+          <div style="text-align:center;font-size:12.5px;color:#6B6860;margin-top:12px">Adjust manually</div>
+        </div>
+
+        <div style="position:absolute;inset:0;padding:8px 22px 0;opacity:{{ op2 }};transition:opacity .4s ease">
+          <div style="font-size:12.5px;color:#6B6860;line-height:1.5;text-wrap:pretty">Four months of market moves pushed your mix off its target. Here is the drift.</div>
+          <div style="background:#fff;border:0.5px solid #E8E5DE;border-radius:14px;padding:16px;margin-top:14px">
+            <sc-for list="{{ sleeves }}" as="s" hint-placeholder-count="4">
+              <div style="padding:11px 0;border-bottom:{{ s.border }}">
+                <div style="display:flex;align-items:baseline;justify-content:space-between">
+                  <span style="font-size:13px">{{ s.name }}</span>
+                  <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:{{ s.driftColor }}">{{ s.drift }}</span>
+                </div>
+                <div style="position:relative;height:6px;border-radius:3px;background:#F0EDE6;margin-top:9px">
+                  <div style="position:absolute;left:0;top:0;height:6px;border-radius:3px;width:{{ s.now }};background:{{ s.color }}"></div>
+                  <div style="position:absolute;left:{{ s.target }};top:-3px;width:2px;height:12px;background:#1C1917"></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10.5px;color:#9C9A95">
+                  <span>now {{ s.nowLabel }}</span><span>target {{ s.targetLabel }}</span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="background:#fff;border:0.5px solid #E8E5DE;border-left:2px solid #D4537E;border-radius:12px;padding:15px;margin-top:12px">
+            <div style="display:flex;align-items:center;gap:7px">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4537E" stroke-width="1.6" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"></rect><path d="M12 4v4M9 13h.01M15 13h.01"></path></svg>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.05em;color:#9C9A95">NAHL</span>
+            </div>
+            <div style="font-size:12.5px;line-height:1.55;margin-top:9px;text-wrap:pretty">Equities are 7 points over target, mostly DANGCEM. Selling ₦38,400 and buying FGN bonds brings you back to Moderate Growth. Cost: ₦412 all in.</div>
+            <div style="display:inline-flex;align-items:center;height:34px;padding:0 15px;border-radius:50px;background:#1C1917;color:#fff;font-size:12.5px;margin-top:12px">Rebalance now</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;background:#F0EDE6;border-radius:12px;padding:14px;margin-top:11px">
+            <span style="font-size:12.5px;color:#6B6860">Do this automatically each quarter</span>
+            <span style="width:40px;height:23px;border-radius:50px;background:#0D7A5F;position:relative;flex:none"><span style="position:absolute;top:2px;left:19px;width:19px;height:19px;border-radius:50%;background:#fff"></span></span>
+          </div>
+        </div>
+      </div>
+      <div style="flex:none;padding:0 22px 14px">
+        <div style="height:46px;border-radius:50px;background:#F0EDE6;display:flex;align-items:center;gap:10px;padding:0 16px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"></rect><path d="M12 4v4M9 13h.01M15 13h.01"></path></svg>
+          <span style="font-size:13px;color:#9C9A95;flex:1">{{ nahlHint }}</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9C9A95" stroke-width="1.5" stroke-linecap="round"><path d="M12 4v10M9 7a3 3 0 016 0v4a3 3 0 01-6 0z"></path><path d="M6 12a6 6 0 0012 0M12 18v3"></path></svg>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:14px 6px 0">
+          <sc-for list="{{ nav }}" as="t" hint-placeholder-count="5">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:5px;width:56px">
+              <span style="font-size:11px;color:{{ t.color }}">{{ t.label }}</span>
+              <span style="width:14px;height:2px;border-radius:2px;background:{{ t.dot }}"></span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:300,&quot;height&quot;:640},&quot;step&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:2,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Screen&quot;},&quot;fit&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:0.65,&quot;min&quot;:0.3,&quot;max&quot;:1,&quot;step&quot;:0.01,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Screen&quot;}}">
+class Component extends DCLogic {
+  state = { frame: '1D' };
+
+  SERIES = {
+    '1D': [0.50, 0.46, 0.52, 0.49, 0.55, 0.60, 0.57, 0.64, 0.62, 0.70, 0.74, 0.71, 0.80, 0.84, 0.82, 0.90],
+    '1W': [0.40, 0.44, 0.38, 0.50, 0.47, 0.58, 0.55, 0.66, 0.63, 0.72, 0.78, 0.74, 0.83, 0.88],
+    '1M': [0.30, 0.42, 0.36, 0.48, 0.55, 0.50, 0.62, 0.58, 0.70, 0.66, 0.78, 0.74, 0.85, 0.80, 0.90],
+    '1Y': [0.62, 0.55, 0.48, 0.58, 0.42, 0.50, 0.38, 0.46, 0.56, 0.50, 0.64, 0.58, 0.72, 0.68, 0.80, 0.90],
+    'ALL': [0.10, 0.16, 0.14, 0.22, 0.30, 0.26, 0.38, 0.48, 0.44, 0.56, 0.64, 0.72, 0.70, 0.80, 0.88, 0.94]
+  };
+
+  chart(frame) {
+    const W = 340, H = 120, pad = 8;
+    const pts = this.SERIES[frame] || this.SERIES['1D'];
+    let d = '';
+    pts.forEach((v, i) => {
+      const x = pad + (i / (pts.length - 1)) * (W - 2 * pad);
+      const y = H - pad - v * (H - 2 * pad);
+      d += (i === 0 ? 'M' : 'L') + x.toFixed(1) + ' ' + y.toFixed(1) + ' ';
+    });
+    return { path: d.trim(), endY: (H - pad - pts[pts.length - 1] * (H - 2 * pad)).toFixed(1) };
+  }
+
+  renderVals() {
+    const amber = '#B8860B';
+    const step = this.props.step ?? 0;
+    const fit = this.props.fit ?? 0.65;
+    const c = this.chart(this.state.frame);
+    const sleeves = [
+      { name: 'Nigerian equities', now: 52, target: 45, color: '#3C3489' },
+      { name: 'Fixed income', now: 24, target: 30, color: '#185FA5' },
+      { name: 'Money market', now: 14, target: 15, color: '#0D7A5F' },
+      { name: 'Gold', now: 10, target: 10, color: amber }
+    ];
+    return {
+      fit: String(fit),
+      w: Math.round(421 * fit) + 'px',
+      h: Math.round(880 * fit) + 'px',
+      title: ['DANGCEM', 'Risk profile', 'Rebalance'][step],
+      pill: ['NGX', '1 of 3', 'Q3 drift'][step],
+      op0: step === 0 ? '1' : '0',
+      op1: step === 1 ? '1' : '0',
+      op2: step === 2 ? '1' : '0',
+      nahlHint: ['Ask Nahl about DANGCEM', 'Ask Nahl about your profile', 'Ask Nahl about the drift'][step],
+      path: c.path,
+      endY: c.endY,
+      frames: ['1D', '1W', '1M', '1Y', 'ALL'].map(f => ({
+        label: f,
+        bg: this.state.frame === f ? '#1C1917' : 'transparent',
+        fg: this.state.frame === f ? '#fff' : '#6B6860',
+        tap: () => this.setState({ frame: f })
+      })),
+      quick: [{ k: 'Open', v: '₦470' }, { k: 'High', v: '₦489' }, { k: 'Low', v: '₦468' }, { k: 'Vol', v: '2.4M' }],
+      keyStats: [
+        { k: 'Market cap', v: '₦8.2Tn' }, { k: 'P/E', v: '12.4' },
+        { k: 'EPS', v: '₦39.10' }, { k: 'Div yield', v: '5.2%' }
+      ],
+      evidence: [
+        { k: 'Cash flow stability', v: 'High · consistent monthly income', tag: 'Strong', tagFg: '#0D7A5F', tagBg: '#E6F1ED', border: '0.5px solid #E8E5DE' },
+        { k: 'Savings discipline', v: '18% savings rate, above average', tag: 'Strong', tagFg: '#0D7A5F', tagBg: '#E6F1ED', border: '0.5px solid #E8E5DE' },
+        { k: 'Emotional spend pattern', v: 'Moderate · some stress-linked spending', tag: 'Watch', tagFg: amber, tagBg: '#F6EEDB', border: 'none' }
+      ],
+      sleeves: sleeves.map((s, i) => {
+        const d = s.now - s.target;
+        return {
+          name: s.name,
+          color: s.color,
+          now: s.now + '%',
+          target: s.target + '%',
+          nowLabel: s.now + '%',
+          targetLabel: s.target + '%',
+          drift: d === 0 ? 'on target' : (d > 0 ? '+' : '−') + Math.abs(d) + ' pts',
+          driftColor: d === 0 ? '#9C9A95' : Math.abs(d) >= 5 ? '#A32D2D' : '#6B6860',
+          border: i === sleeves.length - 1 ? 'none' : '0.5px solid #E8E5DE'
+        };
+      }),
+      nav: ['Home', 'Spend', 'Save', 'Invest', 'Nahl'].map(l => ({
+        label: l,
+        color: l === 'Invest' ? '#1C1917' : '#9C9A95',
+        dot: l === 'Invest' ? amber : 'transparent'
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

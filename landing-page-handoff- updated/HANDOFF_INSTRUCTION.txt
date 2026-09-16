@@ -1,0 +1,78 @@
+SAVVY BEE LANDING PAGE — HANDOFF INSTRUCTION
+=============================================
+
+This bundle was produced by Claude Design. Everything the rebuild needs is in it;
+there is no link to follow and nothing to download separately.
+
+WHAT TO GIVE CLAUDE CODE
+------------------------
+Unzip the bundle, then point Claude Code at the folder and give it this prompt:
+
+  Read landing-page-handoff/BRIEF.md in full, then
+  landing-page-handoff/design-export/claude-code-handoff/README.md.
+
+  BRIEF.md is an exhaustive, verbatim extraction of a landing page design
+  (copy, colours, type, spacing, motion, responsive behaviour). The HTML files
+  in design-export/ are design references built on a bespoke prototyping
+  runtime -- do NOT copy them into production. Recreate the design in this
+  codebase's own framework and patterns.
+
+  Build it pixel-for-pixel. The screenshots in landing-page-handoff/screenshots/
+  are the target at 1440, 768 and 390 wide.
+
+  Before writing code, read BRIEF.md section 11 (Open Questions) and ask me
+  about the four blocking items.
+
+WHAT IS IN SCOPE
+----------------
+Three pages, plus one file to copy rather than rebuild:
+
+  Landing.dc.html            the landing page      -- BRIEF.md sections 1-11
+  Legal.dc.html              terms, privacy,
+                             fees, complaints      -- BRIEF.md section 12
+  About.dc.html              team, track record    -- BRIEF.md section 13
+  Savvy Bee Prototype.html   the demo, SHIP AS-IS  -- BRIEF.md section 14
+
+Legal and About are linked from the landing page's nav and footer, so all three
+go live together. Both are static and reuse the landing page's tokens exactly.
+
+The demo is NOT a rebuild target. It is a self-contained 2.3 MB file with 46 app
+screens inlined, which the landing page loads in an iframe. Copy it into the
+build output and point the iframe at it. It already opens on the Home screen,
+and it already carries the fit/overscroll fix that makes a 421x880 phone usable
+inside a small iframe -- the bottom nav stays visible and swiping a card
+carousel no longer drags the whole view sideways. If you ever host the demo
+separately, that fix must travel with it. BRIEF.md section 14 has the detail.
+
+Not in scope: Investors.dc.html (deliberately unlinked), and the 46 individual
+app screens -- they live inside the demo file and are not web pages.
+
+READ ORDER
+----------
+  1. BRIEF.md                                     -- the authoritative spec
+  2. design-export/claude-code-handoff/README.md  -- orientation + state model
+  3. screenshots/                                 -- the visual target
+  4. design-export/*.dc.html                      -- source, when detail is needed
+
+THE ONE THING THAT MATTERS MOST
+-------------------------------
+The desktop modules section is the signature interaction: a sticky device column
+beside four tall copy blocks, where a scroll listener computes a 0-1 weight per
+block from its distance to the viewport centre, and that weight drives copy
+opacity, copy translate, a progress rail, tick heights, device scale and device
+drift. BRIEF.md section 7 has the exact maths. Below 900px it becomes a
+scroll-snap swipe carousel instead -- a different layout, not a reflow.
+
+ALSO NOTE
+---------
+- Weights 400 and 500 only. Never 700. Type carries hierarchy, not weight.
+- Borders are always 0.5px hairlines.
+- One shadow in the entire page. No gradients anywhere.
+- One breakpoint, at 900px, and in the prototype it is a JS check -- there are
+  no CSS media queries. Feel free to use real media queries in the rebuild.
+- All motion must respect prefers-reduced-motion.
+
+TO SEE IT RUNNING
+-----------------
+Open design-export/Savvy Bee Landing (standalone).html in a browser. It is fully
+self-contained -- no server, no network, all assets inlined.

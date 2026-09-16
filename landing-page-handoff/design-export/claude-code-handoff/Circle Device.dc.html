@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="position:relative;flex:none;width:{{ w }};height:{{ h }}">
+  <div style="position:absolute;top:0;left:0;width:421px;height:880px;transform:scale({{ fit }});transform-origin:top left;background:#1C1917;border-radius:56px;padding:14px">
+    <div style="width:393px;height:852px;background:#F8F6F1;border-radius:44px;overflow:hidden;display:flex;flex-direction:column;position:relative">
+      <div style="flex:none;padding:52px 22px 12px;display:flex;align-items:center;justify-content:space-between">
+        <div style="font-size:21px;font-weight:500;letter-spacing:-0.01em">{{ title }}</div>
+        <div style="height:32px;padding:0 14px;border-radius:50px;background:#F0EDE6;display:flex;align-items:center;font-size:13px;color:#6B6860">{{ pill }}</div>
+      </div>
+      <div style="flex:1;position:relative;overflow:hidden">
+
+        <div style="position:absolute;inset:0;padding:8px 22px 0;opacity:{{ op0 }};transition:opacity .4s ease">
+          <div style="background:#1C1917;border-radius:14px;padding:18px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="display:flex;align-items:center;gap:6px;font-size:10px;color:#fff;background:rgba(255,255,255,0.14);border-radius:50px;padding:4px 10px">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path></svg>Escrow held
+              </span>
+              <span style="font-size:10px;color:#9C9A95;background:rgba(255,255,255,0.08);border-radius:50px;padding:4px 10px">Cycle 4 of 8</span>
+            </div>
+            <div style="font-size:18px;font-weight:500;color:#fff;margin-top:14px">Lagos Devs Ajo</div>
+            <div style="display:flex;align-items:center;gap:14px;margin-top:14px">
+              <div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:500;color:#fff">₦20k</div>
+                <div style="font-size:10px;color:#9C9A95;margin-top:3px">per week</div>
+              </div>
+              <span style="width:0.5px;height:26px;background:rgba(255,255,255,0.15)"></span>
+              <div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:500;color:#fff">8</div>
+                <div style="font-size:10px;color:#9C9A95;margin-top:3px">members</div>
+              </div>
+              <span style="width:0.5px;height:26px;background:rgba(255,255,255,0.15)"></span>
+              <div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:500;color:#fff">₦160k</div>
+                <div style="font-size:10px;color:#9C9A95;margin-top:3px">each payout</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin:20px 0 12px">
+            <span style="font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:#9C9A95">Payout rotation</span>
+            <span style="font-size:11px;color:#6B6860">You're #4</span>
+          </div>
+          <div style="display:flex;justify-content:space-between">
+            <sc-for list="{{ rotation }}" as="r" hint-placeholder-count="8">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:6px;flex:1">
+                <span style="width:30px;height:30px;border-radius:50%;background:{{ r.bg }};border:{{ r.border }};color:{{ r.fg }};display:flex;align-items:center;justify-content:center;font-size:9.5px">{{ r.label }}</span>
+                <span style="font-size:9px;color:{{ r.numColor }}">{{ r.num }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;gap:9px;margin-top:18px">
+            <div style="flex:1;background:#fff;border:0.5px solid #E8E5DE;border-radius:14px;padding:13px 14px">
+              <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.05em;color:#9C9A95">Your payout</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500;margin-top:8px">Apr 12</div>
+              <div style="font-size:10.5px;color:#6B6860;margin-top:4px">in 4 weeks · ₦160,000</div>
+            </div>
+            <div style="flex:1;background:#fff;border:0.5px solid #E8E5DE;border-radius:14px;padding:13px 14px">
+              <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.05em;color:#9C9A95">On time</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500;margin-top:8px;color:#0D7A5F">12 of 12</div>
+              <div style="font-size:10.5px;color:#6B6860;margin-top:4px">your record, visible to all</div>
+            </div>
+          </div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:#9C9A95;margin:18px 0 4px">This cycle</div>
+          <div style="display:grid;gap:0">
+            <sc-for list="{{ ledger }}" as="l" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:0.5px solid #E8E5DE">
+                <span style="width:26px;height:26px;border-radius:50%;background:{{ l.bg }};color:{{ l.fg }};display:flex;align-items:center;justify-content:center;font-size:9.5px;flex:none">{{ l.initials }}</span>
+                <span style="flex:1;font-size:13px">{{ l.name }}</span>
+                <span style="font-size:11.5px;color:{{ l.stateColor }}">{{ l.state }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="height:48px;border-radius:50px;background:#1C1917;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13.5px;margin-top:16px">Pay ₦20,000 into escrow</div>
+        </div>
+
+        <div style="position:absolute;inset:0;padding:8px 22px 0;opacity:{{ op1 }};transition:opacity .4s ease">
+          <div style="background:#fff;border:0.5px solid #E8E5DE;border-radius:14px;padding:18px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between">
+              <div>
+                <div style="font-size:10.5px;text-transform:uppercase;letter-spacing:0.05em;color:#9C9A95">Group goal</div>
+                <div style="font-size:16px;font-weight:500;margin-top:6px">Sokoto WAG · grinding mill</div>
+              </div>
+              <span style="font-size:11px;color:#B8860B;background:#F3ECD9;border-radius:50px;padding:5px 10px;white-space:nowrap">6 members</span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:8px;margin-top:16px">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:500">₦742,000</span>
+              <span style="font-size:12.5px;color:#6B6860">of ₦1,200,000</span>
+            </div>
+            <div style="height:7px;border-radius:4px;background:#F0EDE6;margin-top:13px;overflow:hidden">
+              <div style="height:7px;border-radius:4px;width:62%;background:#B8860B"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-top:9px;font-size:11px;color:#9C9A95">
+              <span>62% funded</span><span>on pace for 14 Nov</span>
+            </div>
+          </div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:#9C9A95;margin:20px 0 4px">Who has put in what</div>
+          <div style="display:grid;gap:0">
+            <sc-for list="{{ contributors }}" as="c" hint-placeholder-count="5">
+              <div style="padding:12px 0;border-bottom:0.5px solid #E8E5DE">
+                <div style="display:flex;align-items:center;gap:11px">
+                  <span style="width:26px;height:26px;border-radius:50%;background:{{ c.bg }};color:{{ c.fg }};display:flex;align-items:center;justify-content:center;font-size:9.5px;flex:none">{{ c.initials }}</span>
+                  <span style="flex:1;font-size:13px">{{ c.name }}</span>
+                  <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#6B6860">{{ c.amt }}</span>
+                </div>
+                <div style="height:4px;border-radius:2px;background:#F0EDE6;margin-top:8px;margin-left:37px;overflow:hidden">
+                  <div style="height:4px;border-radius:2px;width:{{ c.pct }};background:{{ c.bar }}"></div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="background:#fff;border:0.5px solid #E8E5DE;border-left:2px solid #D4537E;border-radius:12px;padding:14px;margin-top:14px">
+            <div style="display:flex;align-items:center;gap:7px">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4537E" stroke-width="1.6" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"></rect><path d="M12 4v4M9 13h.01M15 13h.01"></path></svg>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.05em;color:#9C9A95">NAHL</span>
+            </div>
+            <div style="font-size:12.5px;line-height:1.55;margin-top:9px;text-wrap:pretty">Hauwa has missed two weeks. Her cash flow says the ₦8,000 weekly is too high — ₦5,000 keeps her in and still lands the mill by 28 Nov.</div>
+          </div>
+        </div>
+
+        <div style="position:absolute;inset:0;padding:8px 22px 0;opacity:{{ op2 }};transition:opacity .4s ease">
+          <div style="display:flex;gap:4px;background:#F0EDE6;border-radius:50px;padding:4px">
+            <sc-for list="{{ regs }}" as="r" hint-placeholder-count="2">
+              <div onClick="{{ r.tap }}" style="flex:1;text-align:center;font-size:12.5px;border-radius:50px;padding:9px 0;cursor:pointer;background:{{ r.bg }};color:{{ r.fg }};transition:background .2s">{{ r.label }}</div>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;gap:9px;background:{{ bannerBg }};border:0.5px solid {{ bannerBorder }};border-radius:12px;padding:11px 12px;margin-top:10px">
+            <span style="font-size:11px;color:#6B6860;line-height:1.45;flex:1;text-wrap:pretty">{{ bannerText }}</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:11px;margin-top:14px">
+            <sc-for list="{{ msgs }}" as="m" hint-placeholder-count="4">
+              <div>
+                <sc-if value="{{ m.isSystem }}" hint-placeholder-val="{{ false }}">
+                  <div style="text-align:center;font-size:10.5px;color:#9C9A95;line-height:1.4;padding:2px 0">{{ m.text }}</div>
+                </sc-if>
+                <sc-if value="{{ m.isMember }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;align-items:flex-end;gap:8px">
+                    <span style="width:26px;height:26px;border-radius:50%;background:{{ m.bg }};color:{{ m.fg }};display:flex;align-items:center;justify-content:center;font-size:9.5px;flex:none">{{ m.initials }}</span>
+                    <div style="max-width:74%">
+                      <div style="font-size:10px;color:#9C9A95;margin:0 0 3px 3px">{{ m.name }}</div>
+                      <div style="background:#fff;border:0.5px solid #E8E5DE;border-radius:14px 14px 14px 4px;padding:10px 13px;font-size:12.5px;line-height:1.45;text-wrap:pretty">{{ m.text }}</div>
+                    </div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ m.isYou }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;justify-content:flex-end">
+                    <div style="max-width:76%;background:#1C1917;border-radius:14px 14px 4px 14px;padding:10px 13px;font-size:12.5px;color:#fff;line-height:1.45;text-wrap:pretty">{{ m.text }}</div>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ m.isNahl }}" hint-placeholder-val="{{ true }}">
+                  <div style="display:flex;gap:9px">
+                    <span style="width:26px;height:26px;border-radius:50%;background:#FBEAF0;display:flex;align-items:center;justify-content:center;flex:none">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4537E" stroke-width="1.6" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"></rect><path d="M12 4v4M9 13h.01M15 13h.01"></path></svg>
+                    </span>
+                    <div style="flex:1;min-width:0;background:#fff;border:0.5px solid #E8E5DE;border-left:2px solid #D4537E;border-radius:4px 14px 14px 14px;padding:13px">
+                      <div style="display:flex;align-items:center;gap:8px">
+                        <span style="font-size:12px;font-weight:500">Nahl</span>
+                        <span style="font-size:9px;color:{{ m.chipFg }};background:{{ m.chipBg }};border-radius:50px;padding:3px 8px;text-transform:uppercase;letter-spacing:0.04em">{{ m.chip }}</span>
+                      </div>
+                      <div style="font-size:12.5px;line-height:1.55;margin-top:9px;text-wrap:pretty">{{ m.text }}</div>
+                      <sc-if value="{{ m.hasImpacts }}" hint-placeholder-val="{{ true }}">
+                        <div style="margin-top:12px;padding-top:11px;border-top:0.5px solid #E8E5DE;display:flex;flex-direction:column;gap:9px">
+                          <sc-for list="{{ m.impacts }}" as="im" hint-placeholder-count="3">
+                            <div style="display:flex;align-items:center;gap:10px">
+                              <span style="width:21px;height:21px;border-radius:50%;background:{{ im.bg }};color:{{ im.fg }};display:flex;align-items:center;justify-content:center;font-size:8.5px;flex:none">{{ im.initials }}</span>
+                              <span style="flex:1;font-size:11.5px;color:#6B6860;line-height:1.35">{{ im.text }}</span>
+                              <span style="width:7px;height:7px;border-radius:2px;background:{{ im.tone }};flex:none"></span>
+                            </div>
+                          </sc-for>
+                        </div>
+                      </sc-if>
+                      <sc-if value="{{ m.hasRule }}" hint-placeholder-val="{{ true }}">
+                        <div style="background:#F6E7E7;border-radius:10px;padding:11px;margin-top:11px;font-size:11px;line-height:1.45;text-wrap:pretty">{{ m.ruleText }}</div>
+                      </sc-if>
+                      <sc-if value="{{ m.hasStats }}" hint-placeholder-val="{{ false }}">
+                        <div style="display:flex;gap:8px;margin-top:12px">
+                          <sc-for list="{{ m.stats }}" as="s" hint-placeholder-count="2">
+                            <div style="flex:1;background:#F0EDE6;border-radius:10px;padding:10px 11px">
+                              <div style="font-size:9px;text-transform:uppercase;letter-spacing:0.04em;color:#9C9A95">{{ s.k }}</div>
+                              <div style="font-size:12.5px;font-weight:500;color:{{ s.color }};margin-top:5px">{{ s.v }}</div>
+                            </div>
+                          </sc-for>
+                        </div>
+                      </sc-if>
+                    </div>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="flex:none;padding:0 22px 14px">
+        <div style="height:46px;border-radius:50px;background:#F0EDE6;display:flex;align-items:center;gap:10px;padding:0 16px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="1.5" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"></rect><path d="M12 4v4M9 13h.01M15 13h.01"></path></svg>
+          <span style="font-size:13px;color:#9C9A95;flex:1">{{ nahlHint }}</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9C9A95" stroke-width="1.5" stroke-linecap="round"><path d="M12 4v10M9 7a3 3 0 016 0v4a3 3 0 01-6 0z"></path><path d="M6 12a6 6 0 0012 0M12 18v3"></path></svg>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:14px 6px 0">
+          <sc-for list="{{ nav }}" as="t" hint-placeholder-count="5">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:5px;width:56px">
+              <span style="font-size:11px;color:{{ t.color }}">{{ t.label }}</span>
+              <span style="width:14px;height:2px;border-radius:2px;background:{{ t.dot }}"></span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:300,&quot;height&quot;:640},&quot;step&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:2,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Screen&quot;},&quot;fit&quot;:{&quot;editor&quot;:&quot;float&quot;,&quot;default&quot;:0.65,&quot;min&quot;:0.3,&quot;max&quot;:1,&quot;step&quot;:0.01,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Screen&quot;}}">
+class Component extends DCLogic {
+  state = { reg: 'group' };
+
+  renderVals() {
+    const amber = '#B8860B';
+    const step = this.props.step ?? 0;
+    const fit = this.props.fit ?? 0.65;
+    const isGroup = this.state.reg === 'group';
+
+    const groupMsgs = [
+      { isSystem: true, text: 'Ada proposed: raise the weekly contribution from ₦20k to ₦30k' },
+      { isMember: true, name: 'Ada', initials: 'AD', bg: '#FBEAF0', fg: '#D4537E', text: 'Bigger payouts and we finish the round faster. Who is in?' },
+      { isNahl: true, chip: 'Neutral mediator', chipFg: '#6B6860', chipBg: '#F0EDE6',
+        text: 'I do not take a side. Here is exactly what +₦10k a week does for each of you.',
+        hasImpacts: true, hasRule: true, hasStats: false,
+        impacts: [
+          { initials: 'AD', bg: '#FBEAF0', fg: '#D4537E', text: 'Ada — comfortable, wants the upside', tone: '#0D7A5F' },
+          { initials: 'OO', bg: '#FAEEDA', fg: amber, text: 'You — fits your cash flow, +₦80k payout', tone: '#0D7A5F' },
+          { initials: 'MU', bg: '#E4ECF5', fg: '#185FA5', text: 'Musa — would dip below his floor in week 3', tone: '#A32D2D' }
+        ],
+        ruleText: 'Changing the contribution mid-circle is a governance change — it needs a unanimous vote, not a majority. And I cannot let it push Musa below his Safety Floor.' },
+      { isMember: true, name: 'Musa', initials: 'MU', bg: '#E4ECF5', fg: '#185FA5', text: 'Honestly ₦30k might be tight for me some weeks.' }
+    ];
+
+    const privateMsgs = [
+      { isSystem: true, text: 'Private channel — only you can see this. The circle never sees a word.' },
+      { isYou: true, text: 'Be straight with me — is raising to ₦30k still good for me?' },
+      { isNahl: true, chip: 'Private · your side', chipFg: '#D4537E', chipBg: '#FBEAF0',
+        text: 'Yes, for you specifically. Your income clears ₦30k a week comfortably, and the bigger payout lands right when your laptop goal is due.',
+        hasImpacts: false, hasRule: false, hasStats: true,
+        stats: [{ k: 'Your floor', v: 'Protected', color: '#0D7A5F' }, { k: 'Your payout', v: '+₦80,000', color: amber }] },
+      { isNahl: true, chip: 'Private · your side', chipFg: '#D4537E', chipBg: '#FBEAF0',
+        text: 'It works for you and strains Musa. If you value the circle holding together, ₦25k is the number where everyone stays safe. Whatever you decide here stays between us.',
+        hasImpacts: false, hasRule: false, hasStats: false }
+    ];
+
+    const contributors = [
+      { name: 'Hauwa I.', initials: 'HI', amt: '₦96,000', pct: 48, bg: '#E4ECF5', fg: '#185FA5' },
+      { name: 'Zainab A.', initials: 'ZA', amt: '₦168,000', pct: 84, bg: '#FBEAF0', fg: '#D4537E' },
+      { name: 'You', initials: 'OO', amt: '₦160,000', pct: 80, bg: '#FAEEDA', fg: amber },
+      { name: 'Fatima B.', initials: 'FB', amt: '₦152,000', pct: 76, bg: '#EDEBF5', fg: '#3C3489' },
+      { name: 'Amina S.', initials: 'AS', amt: '₦166,000', pct: 83, bg: '#E6F1ED', fg: '#0D7A5F' }
+    ];
+
+    return {
+      fit: String(fit),
+      w: Math.round(421 * fit) + 'px',
+      h: Math.round(880 * fit) + 'px',
+      title: ['Savvy Circle', 'Group goal', 'Nahl register'][step],
+      pill: ['Cycle 4', '62%', isGroup ? 'Group' : 'Private'][step],
+      op0: step === 0 ? '1' : '0',
+      op1: step === 1 ? '1' : '0',
+      op2: step === 2 ? '1' : '0',
+      nahlHint: ['Ask Nahl about this circle', 'Ask Nahl about the pace', isGroup ? 'Message the circle…' : 'Ask Nahl privately…'][step],
+      rotation: ['BK', 'ID', 'CN', 'You', 'FB', 'KE', 'SA', 'TA'].map((label, i) => {
+        const paid = i < 3, you = i === 3;
+        return {
+          label,
+          bg: paid ? '#F0EDE6' : you ? amber : '#fff',
+          fg: paid ? '#9C9A95' : you ? '#fff' : '#6B6860',
+          border: paid ? '0.5px solid #E8E5DE' : you ? 'none' : '0.5px solid #E8E5DE',
+          num: String(i + 1),
+          numColor: you ? '#1C1917' : '#9C9A95'
+        };
+      }),
+      ledger: [
+        { name: 'Bola K.', initials: 'BK', state: 'Paid', stateColor: '#0D7A5F', bg: '#E6F1ED', fg: '#0D7A5F' },
+        { name: 'Ada D.', initials: 'AD', state: 'Paid', stateColor: '#0D7A5F', bg: '#FBEAF0', fg: '#D4537E' },
+        { name: 'Musa U.', initials: 'MU', state: 'Due Friday', stateColor: '#9C9A95', bg: '#E4ECF5', fg: '#185FA5' },
+        { name: 'You', initials: 'OO', state: 'Due Friday', stateColor: amber, bg: '#FAEEDA', fg: amber }
+      ],
+      contributors: contributors.map(c => ({ ...c, pct: c.pct + '%', bar: c.pct < 60 ? '#A32D2D' : amber })),
+      regs: [
+        { id: 'group', label: 'Group register' },
+        { id: 'private', label: 'Private' }
+      ].map(r => ({
+        label: r.label,
+        bg: this.state.reg === r.id ? '#fff' : 'transparent',
+        fg: this.state.reg === r.id ? '#1C1917' : '#6B6860',
+        tap: () => this.setState({ reg: r.id })
+      })),
+      bannerBg: isGroup ? '#fff' : '#FBEAF0',
+      bannerBorder: isGroup ? '#E8E5DE' : '#D4537E',
+      bannerText: isGroup
+        ? 'Same Nahl, speaking to the whole circle — neutral, rule-bound, protecting every member\u2019s floor.'
+        : 'The same Nahl, now answering only to you — honestly, in your interest, even inside the group.',
+      msgs: (isGroup ? groupMsgs : privateMsgs).map(m => ({
+        isSystem: !!m.isSystem, isMember: !!m.isMember, isYou: !!m.isYou, isNahl: !!m.isNahl,
+        name: m.name, initials: m.initials, bg: m.bg, fg: m.fg, text: m.text,
+        chip: m.chip, chipFg: m.chipFg, chipBg: m.chipBg,
+        hasImpacts: !!m.hasImpacts, impacts: m.impacts || [],
+        hasRule: !!m.hasRule, ruleText: m.ruleText,
+        hasStats: !!m.hasStats, stats: m.stats || []
+      })),
+      nav: ['Home', 'Spend', 'Save', 'Invest', 'Nahl'].map(l => ({
+        label: l,
+        color: l === 'Nahl' ? '#1C1917' : '#9C9A95',
+        dot: l === 'Nahl' ? amber : 'transparent'
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

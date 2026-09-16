@@ -1,0 +1,54 @@
+SAVVY BEE LANDING PAGE — HANDOFF INSTRUCTION
+=============================================
+
+This bundle was produced by Claude Design. Everything the rebuild needs is in it;
+there is no link to follow and nothing to download separately.
+
+WHAT TO GIVE CLAUDE CODE
+------------------------
+Unzip the bundle, then point Claude Code at the folder and give it this prompt:
+
+  Read landing-page-handoff/BRIEF.md in full, then
+  landing-page-handoff/design-export/claude-code-handoff/README.md.
+
+  BRIEF.md is an exhaustive, verbatim extraction of a landing page design
+  (copy, colours, type, spacing, motion, responsive behaviour). The HTML files
+  in design-export/ are design references built on a bespoke prototyping
+  runtime -- do NOT copy them into production. Recreate the design in this
+  codebase's own framework and patterns.
+
+  Build it pixel-for-pixel. The screenshots in landing-page-handoff/screenshots/
+  are the target at 1440, 768 and 390 wide.
+
+  Before writing code, read BRIEF.md section 11 (Open Questions) and ask me
+  about the four blocking items.
+
+READ ORDER
+----------
+  1. BRIEF.md                                     -- the authoritative spec
+  2. design-export/claude-code-handoff/README.md  -- orientation + state model
+  3. screenshots/                                 -- the visual target
+  4. design-export/*.dc.html                      -- source, when detail is needed
+
+THE ONE THING THAT MATTERS MOST
+-------------------------------
+The desktop modules section is the signature interaction: a sticky device column
+beside four tall copy blocks, where a scroll listener computes a 0-1 weight per
+block from its distance to the viewport centre, and that weight drives copy
+opacity, copy translate, a progress rail, tick heights, device scale and device
+drift. BRIEF.md section 7 has the exact maths. Below 900px it becomes a
+scroll-snap swipe carousel instead -- a different layout, not a reflow.
+
+ALSO NOTE
+---------
+- Weights 400 and 500 only. Never 700. Type carries hierarchy, not weight.
+- Borders are always 0.5px hairlines.
+- One shadow in the entire page. No gradients anywhere.
+- One breakpoint, at 900px, and in the prototype it is a JS check -- there are
+  no CSS media queries. Feel free to use real media queries in the rebuild.
+- All motion must respect prefers-reduced-motion.
+
+TO SEE IT RUNNING
+-----------------
+Open design-export/Savvy Bee Landing (standalone).html in a browser. It is fully
+self-contained -- no server, no network, all assets inlined.

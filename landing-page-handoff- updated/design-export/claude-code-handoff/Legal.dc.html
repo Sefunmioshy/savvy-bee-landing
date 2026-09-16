@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; background:#F8F6F1; }
+  body { font-family:Inter, system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#1C1917; text-decoration:none; }
+  a:hover { color:#B8860B; }
+  ::selection { background:#B8860B; color:#fff; }
+</style>
+</helmet>
+
+<div style="background:#F8F6F1;color:#1C1917;min-height:100vh">
+
+  <header style="position:sticky;top:0;z-index:30;background:rgba(248,246,241,0.94);backdrop-filter:blur(12px);border-bottom:0.5px solid #E8E5DE">
+    <div style="max-width:1180px;margin:0 auto;padding:12px clamp(18px,4vw,32px);display:flex;align-items:center;flex-wrap:wrap;gap:14px 28px;min-height:64px">
+      <a href="Landing.dc.html" style="display:flex;align-items:center;gap:9px;margin-right:auto">
+        <svg width="19" height="21" viewBox="0 0 20 22" fill="none"><path d="M10 1.2l7.6 4.4v8.8L10 18.8 2.4 14.4V5.6z" stroke="#B8860B" stroke-width="1.2" stroke-linejoin="round"></path><path d="M10 6.6l3 1.7v3.4l-3 1.7-3-1.7V8.3z" stroke="#B8860B" stroke-width="1.2" stroke-linejoin="round"></path></svg>
+        <span style="font-size:15px;font-weight:500;letter-spacing:-0.01em">Savvy Bee</span>
+      </a>
+      <nav style="display:flex;align-items:center;flex-wrap:wrap;gap:10px 22px;font-size:13px">
+        <a href="Landing.dc.html#modules" style="color:#6B6860">Product</a>
+        <a href="About.dc.html" style="color:#6B6860">About</a>
+        <a href="Landing.dc.html#get" style="color:#6B6860">Early access</a>
+      </nav>
+    </div>
+  </header>
+
+  <div style="max-width:1180px;margin:0 auto;padding:clamp(36px,6vw,64px) clamp(18px,4vw,32px) 0">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.07em;color:#B8860B">LEGAL AND FEES</div>
+    <h1 style="font-size:clamp(28px,4.4vw,46px);font-weight:400;letter-spacing:-0.035em;line-height:1.06;margin:18px 0 0;max-width:640px;text-wrap:balance">The rules, the prices and what to do when something goes wrong.</h1>
+    <p style="font-size:clamp(14.5px,1.5vw,16px);line-height:1.65;color:#6B6860;margin:18px 0 0;max-width:520px;text-wrap:pretty">Four documents. Written to be read once and understood, rather than agreed to without being opened.</p>
+    <sc-if value="{{ draft }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;gap:12px;align-items:flex-start;border:0.5px solid #E8E5DE;border-left:2px solid #B8860B;background:#fff;border-radius:12px;padding:15px 17px;margin-top:26px;max-width:640px">
+        <div style="flex:1;min-width:0">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.06em;color:#B8860B">DRAFT FOR REVIEW</div>
+          <p style="font-size:13px;line-height:1.6;color:#6B6860;margin:6px 0 0;text-wrap:pretty">Working drafts, not executed policy. Rates, timelines and partner arrangements are settled internally but not yet reviewed by counsel or the compliance lead. Treat this as the intended position rather than executed policy.</p>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+
+  <div style="max-width:1180px;margin:0 auto;padding:clamp(32px,4vw,44px) clamp(18px,4vw,32px) 0">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:0 1px;border-top:0.5px solid #E8E5DE">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="4">
+        <a href="#{{ t.id }}" onClick="{{ t.pick }}" style="display:flex;flex-direction:column;gap:7px;padding:18px 0 17px;border-top:2px solid {{ t.bar }};margin-top:-0.5px;cursor:pointer">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.07em;color:#9C9A95">{{ t.n }}</span>
+          <span style="font-size:15px;font-weight:500;letter-spacing:-0.01em;color:{{ t.fg }};transition:color .25s">{{ t.label }}</span>
+          <span style="font-size:12.5px;line-height:1.5;color:#9C9A95;max-width:200px;text-wrap:pretty">{{ t.hint }}</span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="max-width:1180px;margin:0 auto;padding:clamp(40px,6vw,72px) clamp(18px,4vw,32px) 0">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:clamp(28px,4vw,56px);align-items:start">
+      <div style="max-width:300px">
+        <h2 style="font-size:clamp(22px,3vw,30px);font-weight:400;letter-spacing:-0.03em;line-height:1.14;margin:0;text-wrap:balance">{{ docTitle }}</h2>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.06em;color:#9C9A95;margin-top:14px;line-height:1.8">{{ docMeta }}</div>
+        <p style="font-size:13.5px;line-height:1.62;color:#6B6860;margin:18px 0 0;text-wrap:pretty">{{ docIntro }}</p>
+        <div style="display:grid;gap:0;margin-top:24px">
+          <sc-for list="{{ index }}" as="i" hint-placeholder-count="8">
+            <div style="display:flex;gap:11px;align-items:baseline;padding:9px 0;border-top:0.5px solid #E8E5DE">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#9C9A95;flex:none">{{ i.n }}</span>
+              <span style="font-size:12.5px;line-height:1.45;color:#6B6860;text-wrap:pretty">{{ i.h }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="grid-column:span 2;min-width:0">
+        <sc-for list="{{ blocks }}" as="b" hint-placeholder-count="6">
+          <div style="padding:26px 0 0;max-width:680px">
+            <div style="display:flex;gap:14px;align-items:baseline;border-top:0.5px solid #E8E5DE;padding-top:20px">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.06em;color:#B8860B;flex:none;width:22px">{{ b.n }}</span>
+              <h3 style="font-size:clamp(16px,1.9vw,19px);font-weight:500;letter-spacing:-0.015em;margin:0;text-wrap:balance">{{ b.h }}</h3>
+            </div>
+            <div style="padding-left:36px">
+              <sc-for list="{{ b.ps }}" as="p" hint-placeholder-count="2">
+                <p style="font-size:14px;line-height:1.7;color:#6B6860;margin:13px 0 0;text-wrap:pretty">{{ p }}</p>
+              </sc-for>
+              <sc-if value="{{ b.hasBullets }}" hint-placeholder-val="{{ false }}">
+                <div style="display:grid;gap:0;margin-top:14px">
+                  <sc-for list="{{ b.bullets }}" as="l" hint-placeholder-count="3">
+                    <div style="display:flex;gap:12px;align-items:baseline;padding:10px 0;border-top:0.5px solid #E8E5DE">
+                      <span style="width:5px;height:5px;border-radius:50%;background:#D8D4CC;flex:none;transform:translateY(-3px)"></span>
+                      <span style="font-size:13.5px;line-height:1.6;color:#1C1917;text-wrap:pretty">{{ l }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ b.hasRows }}" hint-placeholder-val="{{ false }}">
+                <div style="border-radius:12px;border:0.5px solid #E8E5DE;background:#fff;margin-top:16px;overflow:hidden">
+                  <sc-for list="{{ b.rows }}" as="r" hint-placeholder-count="5">
+                    <div style="display:flex;flex-wrap:wrap;gap:6px 20px;align-items:baseline;padding:14px 17px;border-top:{{ r.top }}">
+                      <div style="flex:1;min-width:150px">
+                        <div style="font-size:13.5px;color:#1C1917">{{ r.a }}</div>
+                        <sc-if value="{{ r.note }}" hint-placeholder-val="{{ false }}">
+                          <div style="font-size:12px;line-height:1.5;color:#9C9A95;margin-top:4px;text-wrap:pretty">{{ r.note }}</div>
+                        </sc-if>
+                      </div>
+                      <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:{{ r.bColor }};text-align:right;min-width:110px">{{ r.b }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-for>
+
+        <div style="margin-top:clamp(40px,5vw,60px);border-top:0.5px solid #E8E5DE;padding-top:22px;display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center">
+          <div style="flex:1;min-width:220px">
+            <div style="font-size:14px;font-weight:500">{{ nextLabel }}</div>
+            <div style="font-size:13px;color:#6B6860;margin-top:5px;text-wrap:pretty">{{ nextHint }}</div>
+          </div>
+          <a href="#{{ nextId }}" onClick="{{ goNext }}" style="height:46px;padding:0 22px;border-radius:50px;border:0.5px solid #1C1917;color:#1C1917;display:flex;align-items:center;font-size:14px;font-weight:500;white-space:nowrap">Read it</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer style="max-width:1180px;margin:clamp(56px,8vw,80px) auto 0;padding:clamp(40px,5vw,64px) clamp(18px,4vw,32px) 48px;border-top:0.5px solid #E8E5DE">
+    <div style="display:flex;flex-wrap:wrap;gap:24px 40px;align-items:flex-start">
+      <p style="flex:1;min-width:240px;max-width:420px;font-size:12.5px;line-height:1.6;color:#9C9A95;margin:0">Savvy Bee Ltd (RC 8326527). A311, Garki Mall, Damaturu Street, Garki II, Abuja, FCT, Nigeria. Investing carries risk; past performance is not indicative of future returns. Nothing on this page is financial advice.</p>
+      <div style="display:grid;gap:8px">
+        <a href="mailto:hello@mysavvybee.com" style="font-size:12.5px;color:#6B6860">hello@mysavvybee.com</a>
+        <a href="mailto:complaints@mysavvybee.com" style="font-size:12.5px;color:#6B6860">complaints@mysavvybee.com</a>
+        <a href="mailto:privacy@mysavvybee.com" style="font-size:12.5px;color:#6B6860">privacy@mysavvybee.com</a>
+        <a href="tel:+2348135068614" style="font-size:12.5px;color:#6B6860">+234 813 506 8614</a>
+      </div>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.06em;color:#9C9A95;margin-top:clamp(32px,5vw,48px)">© 2026 SAVVY BEE LTD · ABUJA, NIGERIA</div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#B8860B&quot;,&quot;options&quot;:[&quot;#B8860B&quot;,&quot;#185FA5&quot;,&quot;#3C3489&quot;,&quot;#D4537E&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;openDoc&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;terms&quot;,&quot;privacy&quot;,&quot;fees&quot;,&quot;complaints&quot;],&quot;default&quot;:&quot;terms&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;},&quot;draftNotice&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+class Component extends DCLogic {
+  state = { doc: 0 };
+
+  DOCS = [
+    {
+      id: 'terms', label: 'Terms of use', n: '01',
+      hint: 'What you agree to when you use Savvy Bee.',
+      title: 'Terms of use',
+      meta: 'VERSION 0.4 · DRAFT · LAST UPDATED 16 SEPTEMBER 2026',
+      intro: 'These terms are the agreement between you and Savvy Bee Ltd. By creating an account you accept them.',
+      blocks: [
+        { h: 'Who we are', ps: ['Savvy Bee Ltd is a company registered in Nigeria (RC 8326527), with its registered office at A311, Garki Mall, Damaturu Street, Garki II, Abuja, FCT. In these terms, "we", "us" and "Savvy Bee" mean that company, and "you" means the person holding the account.'] },
+        { h: 'What Savvy Bee is, and what it is not', ps: ['Savvy Bee is a financial operating system: it connects accounts you already hold, presents them as one position, and helps you act on what it finds. It is not a bank and does not take deposits in its own name.', 'Where a function is regulated — holding funds, executing a trade, connecting to your bank — that function is performed by a licensed partner institution under an agreement with us. We tell you which partner is involved at the point you use the feature.'] },
+        { h: 'Who can open an account', bullets: ['You are 18 or older and legally able to enter a contract', 'You are resident in Nigeria and can complete identity verification (BVN, NIN or an accepted document)', 'You are acting for yourself, not on behalf of an undisclosed third party', 'The accounts you connect belong to you'] },
+        { h: 'Your account and your security', ps: ['One account per person. Keep your passcode, device and one-time codes to yourself; anything done with your credentials is treated as done by you unless you tell us otherwise.', 'If you lose your device or think someone else has access, tell us immediately through the app or at hello@mysavvybee.com. We will freeze the account while we investigate.'] },
+        { h: 'Connecting your other accounts', ps: ['A connected bank, wallet or card is read-only. You authorise the connection yourself through a licensed connectivity provider, and you can revoke it at any time in Settings.', 'What we show you is what the connected institution sends us. If their data is late, incomplete or wrong, your Savvy Bee view will be too. We are not responsible for the accuracy of data we did not generate, but we will show you when it was last synced.'] },
+        { h: 'Nahl and automated insight', ps: ['Nahl reads the accounts you connect and proposes actions. It does not move money on its own: every action waits for your approval, and shows what it costs and what it changes first.', 'Nahl is not a licensed financial adviser and its output is information, not advice. Decisions you take are yours.'] },
+        { h: 'Savings capsules and vaults', ps: ['Money you save through Savvy Bee is held with a licensed partner institution, in an arrangement designed so that your funds are not our funds and are not available to our creditors.', 'A vault has a lock period you choose. Breaking it early is allowed, but any interest accrued for the period may be forfeited. Interest rates, where offered, come from the partner institution and can change.'] },
+        { h: 'Investing', ps: ['Investment orders are placed through a licensed broker-dealer. Securities bought for you are held in your own name at the central depository, not in a pooled Savvy Bee account.', 'The value of investments can fall as well as rise, and you can get back less than you put in. Nothing in the product is a promise of return. Orders show total cost, including third-party charges, before you confirm them. Execution and settlement follow exchange rules and timelines, not ours.'] },
+        { h: 'Circles and the Hive', ps: ['A circle is an arrangement between you and the people you invite. We provide the register, the schedule, the escrow and the record; we are not a member, a guarantor or an insurer of it.', 'Contributions sit in escrow until the rotation date. If a member stops contributing, we will show it, hold the record and apply the rules the circle agreed — but we cannot make anyone pay, and we do not cover the shortfall.'] },
+        { h: 'Fees', ps: ['Our charges are set out in the Fees schedule, which forms part of these terms. Every charge is shown on screen before you confirm the transaction it applies to. We will give you at least 30 days\u2019 notice before a fee increases or a new fee applies.'] },
+        { h: 'How you may not use Savvy Bee', bullets: ['Fraud, money laundering, terrorist financing or sanctions evasion', 'Moving funds that belong to someone else without disclosing it', 'Gambling operations, unlicensed lending or unlicensed currency dealing', 'Scraping, reverse-engineering or reselling any part of the product'] },
+        { h: 'Suspension, closure and dormancy', ps: ['We may freeze or close an account where we are required to by law or a regulator, where we reasonably suspect fraud or misuse, or where you break these terms. Where we are permitted to tell you why, we will.', 'You can close your account at any time. We will return any balance to a bank account in your name, less anything properly owed. Accounts with no activity for 24 months are treated as dormant and handled under applicable rules.'] },
+        { h: 'What we are responsible for', ps: ['We are responsible for providing the service with reasonable care and skill, and for losses we cause you directly. We are not responsible for market losses, for the acts or outages of banks, exchanges and other third parties, or for indirect losses such as lost profit or opportunity.', 'Nothing here limits liability that cannot be limited under Nigerian law, including for fraud or death and personal injury caused by negligence.'] },
+        { h: 'Changes to these terms', ps: ['We may change these terms. For material changes we will give you at least 14 days\u2019 notice in the app or by email. If you do not accept a change you can close your account before it takes effect.'] },
+        { h: 'Complaints and governing law', ps: ['If something goes wrong, use the Complaints procedure — it is quicker than anything else available to you, and most regulators require you to try it first. These terms are governed by the laws of the Federal Republic of Nigeria, and the courts of the FCT, Abuja have jurisdiction.'] }
+      ]
+    },
+    {
+      id: 'privacy', label: 'Privacy', n: '02',
+      hint: 'What we hold, why, and how to get it back or deleted.',
+      title: 'Privacy notice',
+      meta: 'VERSION 0.4 · DRAFT · NIGERIA DATA PROTECTION ACT 2023',
+      intro: 'Savvy Bee Ltd is the data controller for the personal data described here. Our data protection officer is reachable at privacy@mysavvybee.com.',
+      blocks: [
+        { h: 'What we collect', bullets: ['Identity and contact data: name, date of birth, address, phone, email, BVN or NIN, a selfie or ID document for verification', 'Financial data from accounts you connect: balances, transactions, merchant and category detail, holdings, contribution and repayment history', 'Data you create in the product: goals, budgets, circles, rules, questions you ask Nahl', 'Technical data: device model, operating system, IP address, app version, crash and performance logs', 'Support data: messages, calls and complaint records'] },
+        { h: 'Why we are allowed to hold it', ps: ['Performance of our contract with you, for anything needed to run the account, the unified balance and the features you use.', 'Legal obligation, for identity verification, sanctions screening, transaction monitoring, record-keeping and regulatory reporting.', 'Your consent, for connecting an external account, for marketing messages and for optional personalisation. You can withdraw consent at any time without affecting what came before.', 'Our legitimate interests, for fraud prevention, security, product improvement and aggregated, non-identifying analysis.'] },
+        { h: 'What we do with it', bullets: ['Build the single position across your accounts, and categorise transactions on arrival', 'Run Nahl: work out what a decision costs you and propose an action you approve', 'Detect and prevent fraud, and keep the service secure and available', 'Meet anti-money-laundering, tax and regulatory obligations', 'Support you when you contact us, and investigate complaints'] },
+        { h: 'Automated processing and Nahl', ps: ['Nahl analyses your financial data automatically to produce insight, proposals and a risk profile. It proposes; you approve. We do not take decisions about you by automated means alone where those decisions would have a legal or similarly significant effect on you.', 'You can turn off insight personalisation in Settings. Core categorisation and fraud monitoring stay on, because the service and our obligations depend on them.'] },
+        { h: 'Who we share it with', ps: ['We do not sell your personal data, and we do not share transaction data for advertising.', 'We share what is necessary with: the licensed connectivity provider that powers account linking; the partner institution that holds saved funds; the licensed broker-dealer that executes orders; identity verification, fraud screening, cloud hosting, messaging and analytics providers acting on our instructions; our auditors and professional advisers; and regulators, courts or law enforcement where we are legally required to.'] },
+        { h: 'Data outside Nigeria', ps: ['Some of our processors host data outside Nigeria. Where that happens we transfer it only under the conditions the Nigeria Data Protection Act allows, with contractual safeguards, and we keep a record of each transfer and its basis.'] },
+        { h: 'How long we keep it', ps: ['For as long as you hold an account, and then for the period our financial-services and anti-money-laundering obligations require — currently seven years after the relationship ends. Some records, such as complaint files and consent logs, have their own retention period. After that we delete or irreversibly anonymise the data.'] },
+        { h: 'Your rights', bullets: ['Ask for a copy of the personal data we hold about you', 'Have inaccurate data corrected', 'Ask us to delete data we no longer have a lawful reason to keep', 'Object to or restrict certain processing, including marketing', 'Receive your data in a portable format, or have it sent to another provider', 'Withdraw a consent, or revoke a connected account, at any time'] },
+        { h: 'How to exercise them', ps: ['Email privacy@mysavvybee.com. We will acknowledge within three business days and respond within 30 days; if a request is complex we will tell you why and when to expect an answer. There is no charge unless a request is excessive or repetitive.'] },
+        { h: 'Cookies and the website', ps: ['Our website uses strictly necessary cookies to work, and analytics cookies only if you accept them. You can change your choice at any time from the footer.'] },
+        { h: 'Children', ps: ['Savvy Bee is not for anyone under 18 and we do not knowingly collect their data. If a child\u2019s data reaches us, tell us and we will delete it.'] },
+        { h: 'If you are unhappy with how we handled your data', ps: ['Raise it with our data protection officer first at privacy@mysavvybee.com. If you are not satisfied, you have the right to complain to the Nigeria Data Protection Commission.'] }
+      ]
+    },
+    {
+      id: 'fees', label: 'Fees', n: '03',
+      hint: 'Every charge, including the ones we pass on.',
+      title: 'Fees and charges',
+      meta: 'LAUNCH PRICING · DRAFT · EFFECTIVE AT LAUNCH · ALL FIGURES IN ₦',
+      intro: 'One price, on screen, before you confirm. If a charge is not on this page, we are not charging it.',
+      blocks: [
+        { h: 'The account', rows: [
+          { a: 'Opening and holding an account', b: 'Free' },
+          { a: 'The unified balance and spending analysis', b: 'Free' },
+          { a: 'Connecting a bank, wallet or card', b: 'Free', note: 'No limit on the number of connections' },
+          { a: 'Nahl, budgets, heatmap and subscription tracking', b: 'Free' },
+          { a: 'Monthly maintenance or inactivity fee', b: 'None', accent: true }
+        ] },
+        { h: 'Moving money', rows: [
+          { a: 'Transfers to another Savvy Bee user', b: 'Free' },
+          { a: 'Transfer to another bank, up to ₦5,000', b: '₦10' },
+          { a: 'Transfer to another bank, ₦5,001 – ₦50,000', b: '₦25' },
+          { a: 'Transfer to another bank, above ₦50,000', b: '₦50' },
+          { a: 'Funding by debit card', b: '1.4% + ₦100', note: 'Charged by the payment processor and passed through at cost' },
+          { a: 'Bank transfer into your account', b: 'Free' },
+          { a: 'Failed or reversed transaction', b: 'No fee', note: 'Any charge taken is refunded with the principal' }
+        ] },
+        { h: 'Saving', rows: [
+          { a: 'Capsules, rules and payday auto-save', b: 'Free' },
+          { a: 'Withdrawing from an unlocked capsule', b: 'Free' },
+          { a: 'Breaking a vault before its lock ends', b: 'No fee', note: 'Interest accrued for the period may be forfeited' },
+          { a: 'Interest on saved balances', b: 'Set by partner', note: 'Quoted per annum in the app, gross of withholding tax, and can change' }
+        ] },
+        { h: 'Investing', rows: [
+          { a: 'Brokerage commission on an equity order', b: '1.00% of consideration' },
+          { a: 'Exchange, depository and regulatory fees', b: 'At cost', note: 'Set by the exchange, the depository and the regulator, not by us. Shown line by line before you confirm' },
+          { a: 'Holding, custody or account statement', b: 'Free' },
+          { a: 'Scheduled rebalance', b: 'Order fees only' },
+          { a: 'Currency conversion', b: 'Rate + 0.5%', note: 'The rate you receive and the margin are both displayed before you convert' }
+        ] },
+        { h: 'Circles and the Hive', rows: [
+          { a: 'Creating or joining a circle', b: 'Free' },
+          { a: 'Escrow and payout rotation', b: 'Free' },
+          { a: 'Group goals and shared registers', b: 'Free' }
+        ] },
+        { h: 'Charges that are not ours', ps: ['Some amounts leave your account because someone else requires them. We show them separately and we do not add to them.'], rows: [
+          { a: 'Electronic money transfer levy', b: '₦50', note: 'Government levy on inflows of ₦10,000 and above' },
+          { a: 'VAT on our fees', b: '7.5%' },
+          { a: 'Withholding tax on interest and dividends', b: 'Statutory rate', note: 'Deducted at source by the paying institution' },
+          { a: 'Your own bank\u2019s charges on an outbound transfer', b: 'Set by them' }
+        ] },
+        { h: 'Changing this schedule', ps: ['We will give you at least 30 days\u2019 notice in the app and by email before a fee increases or a new fee applies. A price that falls applies immediately. Every version of this schedule stays available, so you can see what changed and when.'] }
+      ]
+    },
+    {
+      id: 'complaints', label: 'Complaints', n: '04',
+      hint: 'How to raise one, our timelines, and where to escalate.',
+      title: 'Complaints procedure',
+      meta: 'VERSION 0.4 · DRAFT · ALIGNED TO THE CBN CONSUMER PROTECTION REGULATION',
+      intro: 'If we get something wrong, we want the complaint. It is logged, tracked and answered in writing, and you can take it further if our answer does not satisfy you.',
+      blocks: [
+        { h: 'How to complain', ps: ['Use whichever is easiest. All four routes reach the same team and the same register.'], bullets: ['In the app: Settings, then Help, then Report a problem — fastest, because it attaches the transaction', 'Email: complaints@mysavvybee.com', 'Phone: +234 813 506 8614, Monday to Friday, 8am to 6pm WAT', 'Letter: The Complaints Officer, Savvy Bee Ltd, A311 Garki Mall, Damaturu Street, Garki II, Abuja'] },
+        { h: 'What to tell us', ps: ['We can move faster with all of this, but a complaint is never rejected for missing detail — we will come back and ask.'], bullets: ['Your name and the phone number or email on the account', 'What happened and when', 'The amount and transaction reference, if money is involved', 'What you would like us to do to put it right'] },
+        { h: 'What we do, and by when', rows: [
+          { a: 'We acknowledge your complaint with a tracking reference', b: 'Within 3 business days' },
+          { a: 'We resolve it and write to you with the outcome', b: 'Within 14 days' },
+          { a: 'A complaint needing a third party (bank, exchange, processor)', b: 'Up to 30 days', note: 'We tell you at the 14-day mark why it is taking longer and what we are waiting on' },
+          { a: 'A failed transaction or unauthorised debit', b: 'Reversal per CBN timelines', note: 'Where the funds sit with a partner, we chase it and keep you updated' }
+        ] },
+        { h: 'If our answer does not satisfy you', ps: ['Ask for a second-level review within 30 days of our decision. A different, more senior reviewer who was not involved the first time looks at the file again and responds within 14 days. Ask for the complaint file at any point and we will send you what we hold.'] },
+        { h: 'Taking it outside Savvy Bee', ps: ['You can escalate to the relevant regulator if we have not resolved your complaint within two weeks of you raising it, or if you are unhappy with the outcome. Escalating costs you nothing and does not affect your account.'], bullets: ['Banking, payments and transfers: Director, Consumer Protection Department, Central Bank of Nigeria, Central Business District, Abuja — cpd@cbn.gov.ng', 'Investments and securities: Securities and Exchange Commission, Nigeria — complaints through the SEC Complaints Management Framework', 'Personal data: Nigeria Data Protection Commission', 'Consumer matters generally: Federal Competition and Consumer Protection Commission'] },
+        { h: 'What we do with what you tell us', ps: ['Every complaint is logged in a register with its cause, its outcome and how long it took, reported to our board quarterly and to our regulators as required. Where a complaint points at something structural, the fix goes on the product roadmap and we tell you when it ships.'] }
+      ]
+    }
+  ];
+
+  componentDidMount() {
+    const pick = () => {
+      const h = (window.location.hash || '').replace('#', '');
+      const i = this.DOCS.findIndex(d => d.id === h);
+      if (i >= 0 && i !== this.state.doc) this.setState({ doc: i });
+    };
+    const start = this.props.openDoc;
+    if (start) {
+      const i = this.DOCS.findIndex(d => d.id === start);
+      if (i >= 0) this.setState({ doc: i });
+    }
+    pick();
+    this.onHash = pick;
+    window.addEventListener('hashchange', this.onHash);
+  }
+
+  componentWillUnmount() {
+    if (this.onHash) window.removeEventListener('hashchange', this.onHash);
+  }
+
+  go(i) {
+    this.setState({ doc: i });
+    try { window.scrollTo({ top: 0, behavior: 'auto' }); } catch (e) {}
+  }
+
+  renderVals() {
+    const amber = this.props.accent ?? '#B8860B';
+    const d = this.DOCS[this.state.doc] || this.DOCS[0];
+    const next = this.DOCS[(this.state.doc + 1) % this.DOCS.length];
+    const pad = n => String(n + 1).padStart(2, '0');
+    return {
+      draft: this.props.draftNotice ?? true,
+      tabs: this.DOCS.map((x, i) => ({
+        id: x.id, n: x.n, label: x.label, hint: x.hint,
+        bar: i === this.state.doc ? amber : '#E8E5DE',
+        fg: i === this.state.doc ? '#1C1917' : '#9C9A95',
+        pick: () => this.go(i)
+      })),
+      docTitle: d.title,
+      docMeta: d.meta,
+      docIntro: d.intro,
+      index: d.blocks.map((b, i) => ({ n: pad(i), h: b.h })),
+      blocks: d.blocks.map((b, i) => ({
+        n: pad(i), h: b.h,
+        ps: b.ps || [],
+        hasBullets: !!(b.bullets && b.bullets.length),
+        bullets: b.bullets || [],
+        hasRows: !!(b.rows && b.rows.length),
+        rows: (b.rows || []).map((r, j) => ({
+          a: r.a, b: r.b, note: r.note || '',
+          top: j === 0 ? '0' : '0.5px solid #E8E5DE',
+          bColor: r.accent ? amber : '#1C1917'
+        }))
+      })),
+      nextLabel: 'Next: ' + next.label,
+      nextHint: next.hint,
+      nextId: next.id,
+      goNext: () => this.go((this.state.doc + 1) % this.DOCS.length)
+    };
+  }
+}
+</script>
+</body>
+</html>
